@@ -1,2 +1,49 @@
 # About the project
-This is a project we were forced to do in IMS.
+Project me and MIBB were forced to do in IMS, it is written in jave (bloat) and not assembly (good).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Please donate to fix my back posture which is caused by IMS
