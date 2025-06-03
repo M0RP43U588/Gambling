@@ -1,5 +1,5 @@
 public class Roulette {
-  public static final int VERSION=0.1;
+  public static final double VERSION=0.2;
   // constants for text manipulation in terminal
   public static final String RESET = "\033[0m";
   public static final String BOLD = "\033[1m";
@@ -23,4 +23,19 @@ public class Roulette {
   public static final String PURPLE_BACKGROUND = "\033[45m";
   public static final String CYAN_BACKGROUND = "\033[46m";
   public static final String WHITE_BACKGROUND = "\033[47m";
+
+  // define arrays with numbers
+  
+  public static void start() {
+    System.out.printf("Roulette version: %f\n", VERSION);
+    System.out.println("/--------------------------\\");
+    System.out.println("|   Type \"go\" to start     | ");
+    System.out.println("|--------------------------|");
+    System.out.println("|  Type \"info\" for into    | ");
+    System.out.println("\\--------------------------/ ");
+  }
+
+  public static void main(String args[]) {
+    start();
+  }
 } 
