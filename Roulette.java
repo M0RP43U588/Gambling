@@ -1,4 +1,5 @@
 public class Roulette {
+  public static final int VERSION=0.1;
   // constants for text manipulation in terminal
   public static final String RESET = "\033[0m";
   public static final String BOLD = "\033[1m";
