@@ -1,5 +1,14 @@
+import java.util.Random;
+import java.util.Scanner;
+
+/* TODO:
+ * - Function that gets previous score
+ *   Function for animation
+ *   Other functions
+ *   Maybe find out how to clear console */
+
 public class Roulette {
-  public static final double VERSION=0.21;
+  public static final double VERSION=0.22;
   // constants for text manipulation in terminal
   public static final String RESET = "\033[0m";
   public static final String BOLD = "\033[1m";
@@ -24,6 +33,7 @@ public class Roulette {
   public static final String CYAN_BACKGROUND = "\033[46m";
   public static final String WHITE_BACKGROUND = "\033[47m";
 
+  // define arrays with numbers
   public static final int[] REDNUMS             = { 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };
   public static final int[] BLACKNUMS           = { 2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35 };
   public static final int[] ODDNUMS             = { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35 };
@@ -37,9 +47,12 @@ public class Roulette {
   public static final int[] ONE2EIGHTEEN        = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ,13, 14, 15, 16, 17, 18 };
   public static final int[] NINETEEN2THIRTYSIX  = {19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 };
 
+  // start money
+  public static int umoney = 1000;
 
-  // define arrays with numbers
-  
+  // create scanner object
+  static Scanner scnr = new Scanner(System.in);
+
   public static void start() {
     System.out.printf("Roulette version: %.02f\n", VERSION);
     System.out.println("/--------------------------\\");
@@ -47,9 +60,31 @@ public class Roulette {
     System.out.println("|--------------------------|");
     System.out.println("|  Type \"info\" for into    | ");
     System.out.println("\\--------------------------/ ");
+
+    // get user answer
+    String stansw = scnr.nextLine();
+    if (stansw.equals("info")) {
+      info();
+    }
+    // TODO: Add function call for function that gets previous highscore
   }
 
+  // random int function
+  public static int rand() {
+    Random randint = new Random();
+    return randint.nextInt(37);
+  }
+
+  // information function
+  public static void info() {
+    System.out.println("placeholder for game information");
+  }
+
+  // main function
   public static void main(String args[]) {
     start();
   }
+
+  // close scanner
+  scnr.close();
 } 
