@@ -83,8 +83,8 @@ public static void info() {
 // main function
 public static void main(String args[]) {
     start();
+    // close scanner
     scnr.close();
   }
 
-  // close scanner
 } 
