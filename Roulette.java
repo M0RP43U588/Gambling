@@ -115,5 +115,4 @@ public class Roulette {
     // close scanner
     scnr.close();
   }
-
 } 
