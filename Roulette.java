@@ -69,8 +69,8 @@ public class Roulette {
     // TODO: Add function call for function that gets previous highscore
   }
 
-  public static String uInput;
-  public static String userInput() {
+  public static String uinput;
+  public static String userinput() {
     System.out.println("-------------------------|" + GREEN_BACKGROUND + " 0 " + RESET + "|----------------------------");
     System.out.println("|" + RED_BACKGROUND + " 3 " + RESET + "|" + BLACK_BACKGROUND + " 6 " + RESET + "|"+ RED_BACKGROUND + " 9 " + RESET + "|" + RED_BACKGROUND + " 12 " + RESET + "|" + BLACK_BACKGROUND+ " 15 " + RESET + "|" + RED_BACKGROUND + " 18 " + RESET + "|" + RED_BACKGROUND + " 21 " + RESET + "|"+ BLACK_BACKGROUND + " 24 " + RESET + "|" + RED_BACKGROUND + " 27 " + RESET + "|" + RED_BACKGROUND+ " 30 " + RESET + "|" + BLACK_BACKGROUND + " 33 " + RESET + "|" + RED_BACKGROUND + " 36 " + RESET+ "| <- Reihe 3");
     System.out.println("|" + BLACK_BACKGROUND + " 2 " + RESET + "|" + RED_BACKGROUND + " 5 " + RESET + "|"+ BLACK_BACKGROUND + " 8 " + RESET + "|" + BLACK_BACKGROUND + " 11 " + RESET + "|" + RED_BACKGROUND+ " 14 " + RESET + "|" + BLACK_BACKGROUND + " 17 " + RESET + "|" + BLACK_BACKGROUND + " 20 " + RESET+ "|" + RED_BACKGROUND + " 23 " + RESET + "|" + BLACK_BACKGROUND + " 26 " + RESET + "|"+ BLACK_BACKGROUND + " 29 " + RESET + "|" + RED_BACKGROUND + " 32 " + RESET + "|" + BLACK_BACKGROUND+ " 35 " + RESET + "| <- Reihe 2");
@@ -84,17 +84,17 @@ public class Roulette {
     System.out.println("----------------------------------------------------------");
     System.out.println("Sie haben " + YELLOW + umoney + " CHF" + RESET);
     System.out.println("Auf was wollen sie wetten? ");
-    uInput = scnr.nextLine();
+    uinput = scnr.nextLine();
     //z ist eine Abkürzung für die beliebige Zahl
-    if (uInput.contentEquals("z")) {
+    if (uinput.contentEquals("z")) {
       System.out.println("Welche Zahl genau? ");
-      uInput = scnr.nextLine();
-      if (Integer.valueOf(uInput) > 36) {
+      uinput = scnr.nextLine();
+      if (Integer.valueOf(uinput) > 36) {
         System.out.println("Invalid Input");
-        userInput();
+        userinput();
       }
     }
-    return uInput;
+    return uinput;
   }
 
   // random int function
@@ -111,7 +111,7 @@ public class Roulette {
   // main function
   public static void main(String args[]) {
     start();
-    uInput = userInput();
+    uinput = userinput();
     // close scanner
     scnr.close();
   }
