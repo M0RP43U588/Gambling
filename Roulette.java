@@ -8,7 +8,7 @@ import java.util.Scanner;
  *   Maybe find out how to clear console */
 
 public class Roulette {
-  public static final double VERSION=0.22;
+  public static final double VERSION=0.23;
   // constants for text manipulation in terminal
   public static final String RESET = "\033[0m";
   public static final String BOLD = "\033[1m";
