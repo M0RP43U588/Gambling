@@ -67,24 +67,24 @@ public class Roulette {
       info();
     }
     // TODO: Add function call for function that gets previous highscore
-  }
+}
 
-  // random int function
-  public static int rand() {
+// random int function
+public static int rand() {
     Random randint = new Random();
     return randint.nextInt(37);
-  }
+}
 
-  // information function
-  public static void info() {
+// information function
+public static void info() {
     System.out.println("placeholder for game information");
-  }
+}
 
-  // main function
-  public static void main(String args[]) {
+// main function
+public static void main(String args[]) {
     start();
+    scnr.close();
   }
 
   // close scanner
-  scnr.close();
 } 
