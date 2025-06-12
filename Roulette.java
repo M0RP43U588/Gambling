@@ -1,5 +1,8 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Arrays;
+import java.util.List;
+import java.io.IOException;
 
 /* TODO:
  * - Function that gets previous score
@@ -46,6 +49,7 @@ public class Roulette {
   public static final int[] THIRDCOL            = { 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36 };
   public static final int[] ONE2EIGHTEEN        = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ,13, 14, 15, 16, 17, 18 };
   public static final int[] NINETEEN2THIRTYSIX  = { 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 };
+  public static final String[] AC               = {"erste 12", "zweite 12", "dritte 12", "1-18", "gerade", "rot", "schwarz", "ungerade", "19-36", "z"};
   
   // start money
   public static int umoney = 1000;
@@ -69,8 +73,10 @@ public class Roulette {
     // TODO: Add function call for function that gets previous highscore
   }
 
-  public static String uinput;
-  public static String userinput() {
+  public static String[] uir = new String[2];
+  public static String uc;
+  public static String uba;
+  public static String[] userinput() {
     System.out.println("-------------------------|" + GREEN_BACKGROUND + " 0 " + RESET + "|----------------------------");
     System.out.println("|" + RED_BACKGROUND + " 3 " + RESET + "|" + BLACK_BACKGROUND + " 6 " + RESET + "|"+ RED_BACKGROUND + " 9 " + RESET + "|" + RED_BACKGROUND + " 12 " + RESET + "|" + BLACK_BACKGROUND+ " 15 " + RESET + "|" + RED_BACKGROUND + " 18 " + RESET + "|" + RED_BACKGROUND + " 21 " + RESET + "|"+ BLACK_BACKGROUND + " 24 " + RESET + "|" + RED_BACKGROUND + " 27 " + RESET + "|" + RED_BACKGROUND+ " 30 " + RESET + "|" + BLACK_BACKGROUND + " 33 " + RESET + "|" + RED_BACKGROUND + " 36 " + RESET+ "| <- Reihe 3");
     System.out.println("|" + BLACK_BACKGROUND + " 2 " + RESET + "|" + RED_BACKGROUND + " 5 " + RESET + "|"+ BLACK_BACKGROUND + " 8 " + RESET + "|" + BLACK_BACKGROUND + " 11 " + RESET + "|" + RED_BACKGROUND+ " 14 " + RESET + "|" + BLACK_BACKGROUND + " 17 " + RESET + "|" + BLACK_BACKGROUND + " 20 " + RESET+ "|" + RED_BACKGROUND + " 23 " + RESET + "|" + BLACK_BACKGROUND + " 26 " + RESET + "|"+ BLACK_BACKGROUND + " 29 " + RESET + "|" + RED_BACKGROUND + " 32 " + RESET + "|" + BLACK_BACKGROUND+ " 35 " + RESET + "| <- Reihe 2");
@@ -84,17 +90,17 @@ public class Roulette {
     System.out.println("----------------------------------------------------------");
     System.out.println("Sie haben " + YELLOW + umoney + " CHF" + RESET);
     System.out.println("Auf was wollen sie wetten? ");
-    uinput = scnr.nextLine();
-    //z ist eine Abkürzung für die beliebige Zahl
-    if (uinput.contentEquals("z")) {
-      System.out.println("Welche Zahl genau? ");
-      uinput = scnr.nextLine();
-      if (Integer.valueOf(uinput) > 36) {
-        System.out.println("Invalid Input");
-        userinput();
-      }
-    }
-    return uinput;
+    // get target
+    uc = scnr.nextLine().toLowerCase(); if (!(Arrays.asList(AC).contains(uc))) {System.out.println("etwas ist falsch gelaufen"); userinput();}
+    // get exact num if target == z
+    if (uc.equals("z")) { System.out.println("Welche Zahl genau?"); uc = scnr.nextLine(); if (Integer.valueOf(uc) > 36 || Integer.valueOf(uc) < 1) {System.out.println("Ungültiger Input"); userinput();}}
+    // get amount
+    System.out.println("Wieviel möchtest du einsetzen?");
+    try {uba = scnr.nextLine(); if (Integer.valueOf(uba) > umoney) { System.out.println("Du hast nicht genug Geld"); userinput();}} catch (Exception e) {System.out.println("Ungültiger Input"); userinput();}
+    // append to array and return
+    uir[0] = uc;
+    uir[1] = uba;
+    return uir;
   }
 
   // random int function
@@ -111,7 +117,7 @@ public class Roulette {
   // main function
   public static void main(String args[]) {
     start();
-    uinput = userinput();
+    uInput = userInput();
     // close scanner
     scnr.close();
   }
