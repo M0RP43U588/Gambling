@@ -92,34 +92,32 @@ public class Roulette {
     System.out.println("Auf was wollen sie wetten? ");
 
     // get target
-    uc = scnr.nextLine().toLowerCase();
+    uc = scnr.nextLine().toLowerCase(); 
     if (!(Arrays.asList(AC).contains(uc))) {
-      System.out.println("etwas ist falsch gelaufen");
+      System.out.println("etwas ist falsch gelaufen"); 
       userinput();
     }
-
     // get exact num if target == z
-    if (uc.equals("z")) {
-      System.out.println("Welche Zahl genau?");
-      uc = scnr.nextLine();
+    if (uc.equals("z")) { 
+      System.out.println("Welche Zahl genau?"); 
+      uc = scnr.nextLine(); 
       if (Integer.valueOf(uc) > 36 || Integer.valueOf(uc) < 1) {
-        System.out.println("Ungültiger Input"); userinput();
+        System.out.println("Ungültiger Input"); 
+        userinput();
       }
     }
-
     // get amount
     System.out.println("Wieviel möchtest du einsetzen?");
     try {
-      uba = scnr.nextLine();
-      if (Integer.valueOf(uba) > umoney) {
-        System.out.println("Du hast nicht genug Geld");
+      uba = scnr.nextLine(); 
+      if (Integer.valueOf(uba) > umoney) { 
+        System.out.println("Du hast nicht genug Geld"); 
         userinput();
       }
     } catch (Exception e) {
-      System.out.println("Ungültiger Input");
+      System.out.println("Ungültiger Input"); 
       userinput();
     }
-
     // append to array and return
     uir[0] = uc;
     uir[1] = uba;
