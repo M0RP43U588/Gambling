@@ -11,7 +11,7 @@ import java.io.IOException;
  *   Maybe find out how to clear console */
 
 public class Roulette {
-  public static final double VERSION=0.23;
+  public static final double VERSION=0.24;
   // constants for text manipulation in terminal
   public static final String RESET = "\033[0m";
   public static final String BOLD = "\033[1m";
@@ -90,13 +90,36 @@ public class Roulette {
     System.out.println("----------------------------------------------------------");
     System.out.println("Sie haben " + YELLOW + umoney + " CHF" + RESET);
     System.out.println("Auf was wollen sie wetten? ");
+
     // get target
-    uc = scnr.nextLine().toLowerCase(); if (!(Arrays.asList(AC).contains(uc))) {System.out.println("etwas ist falsch gelaufen"); userinput();}
+    uc = scnr.nextLine().toLowerCase();
+    if (!(Arrays.asList(AC).contains(uc))) {
+      System.out.println("etwas ist falsch gelaufen");
+      userinput();
+    }
+
     // get exact num if target == z
-    if (uc.equals("z")) { System.out.println("Welche Zahl genau?"); uc = scnr.nextLine(); if (Integer.valueOf(uc) > 36 || Integer.valueOf(uc) < 1) {System.out.println("Ungültiger Input"); userinput();}}
+    if (uc.equals("z")) {
+      System.out.println("Welche Zahl genau?");
+      uc = scnr.nextLine();
+      if (Integer.valueOf(uc) > 36 || Integer.valueOf(uc) < 1) {
+        System.out.println("Ungültiger Input"); userinput();
+      }
+    }
+
     // get amount
     System.out.println("Wieviel möchtest du einsetzen?");
-    try {uba = scnr.nextLine(); if (Integer.valueOf(uba) > umoney) { System.out.println("Du hast nicht genug Geld"); userinput();}} catch (Exception e) {System.out.println("Ungültiger Input"); userinput();}
+    try {
+      uba = scnr.nextLine();
+      if (Integer.valueOf(uba) > umoney) {
+        System.out.println("Du hast nicht genug Geld");
+        userinput();
+      }
+    } catch (Exception e) {
+      System.out.println("Ungültiger Input");
+      userinput();
+    }
+
     // append to array and return
     uir[0] = uc;
     uir[1] = uba;
@@ -119,8 +142,6 @@ public class Roulette {
     start();
     // get userinput
     uir = userinput();
-    System.out.println(uir[0]);
-    System.out.println(uir[1]);
     // close scanner
     scnr.close();
   }
