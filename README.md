@@ -1,49 +1,7 @@
-# About the project
-Project me and MIBB were forced to do in IMS, it is written in jave (bloat) and not assembly (good).
+# About the Project
+This is a project we had to do in IMS, and it is written in Java (why do we learn ts, why not cpp or asm). The Game itself is Roulette and its played a terminal emulator.
 
+Our project, like many others in our class, focuses on gambling but we want to be clear that we !(do not encourage) anyone to gamble in real life.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Please donate to fix my back posture which is caused by IMS
+## Goal
+The Goal of the Project is !(to learn infinite java methods) and to beat the Windows users by making a better Project than theirs.
