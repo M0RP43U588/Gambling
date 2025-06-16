@@ -90,14 +90,14 @@ public class Roulette {
     System.out.println("|                   Belibige Zahl ('z')                  |");
     System.out.println("----------------------------------------------------------");
     System.out.println("Sie haben " + YELLOW + umoney + " CHF" + RESET);
-    System.out.println("Auf was wollen sie wetten? ");
+    System.out.println("Auf was wollen Sie Wetten? ");
 
     // get target
-    uc = scnr.nextLine().toLowerCase(); 
-    if (!(Arrays.asList(AC).contains(uc))) {
-      System.out.println("etwas ist falsch gelaufen"); 
-      userinput();
-    }
+    do {
+      uc = scnr.nextLine().toLowerCase(); 
+      if (!(Arrays.asList(AC).contains(uc))) {System.out.println(uc + " ist ungültig");}
+    } while (!(Arrays.asList(AC).contains(uc)));
+
     // get exact num if target == z
     if (uc.equals("z")) { 
       do {
@@ -119,7 +119,7 @@ public class Roulette {
       uba = scnr.nextInt();
     } while (uba >= umoney && uba > 1);
     // append to array and return
-    uir[0] = uc;
+    uir[0] = ucs2;
     uir[1] = String.valueOf(uba);
     return uir;
   }
@@ -140,6 +140,8 @@ public class Roulette {
     start();
     // get userinput
     uir = userinput();
+    System.out.println("target: " + uir[0]);
+    System.out.println("amount: " + uir[1]);
     // close scanner
     scnr.close();
   }
