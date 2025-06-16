@@ -75,7 +75,8 @@ public class Roulette {
 
   public static String[] uir = new String[2];
   public static String uc;
-  public static String uba;
+  public static int  ucs2;
+  public static int uba;
   public static String[] userinput() {
     System.out.println("-------------------------|" + GREEN_BACKGROUND + " 0 " + RESET + "|----------------------------");
     System.out.println("|" + RED_BACKGROUND + " 3 " + RESET + "|" + BLACK_BACKGROUND + " 6 " + RESET + "|"+ RED_BACKGROUND + " 9 " + RESET + "|" + RED_BACKGROUND + " 12 " + RESET + "|" + BLACK_BACKGROUND+ " 15 " + RESET + "|" + RED_BACKGROUND + " 18 " + RESET + "|" + RED_BACKGROUND + " 21 " + RESET + "|"+ BLACK_BACKGROUND + " 24 " + RESET + "|" + RED_BACKGROUND + " 27 " + RESET + "|" + RED_BACKGROUND+ " 30 " + RESET + "|" + BLACK_BACKGROUND + " 33 " + RESET + "|" + RED_BACKGROUND + " 36 " + RESET+ "| <- Reihe 3");
@@ -99,28 +100,27 @@ public class Roulette {
     }
     // get exact num if target == z
     if (uc.equals("z")) { 
-      System.out.println("Welche Zahl genau?"); 
-      uc = scnr.nextLine(); 
-      if (Integer.valueOf(uc) > 36 || Integer.valueOf(uc) < 1) {
-        System.out.println("Ungültiger Input"); 
-        userinput();
-      }
-    }
+      do {
+        System.out.println("Geben sie eine Zahl zwischen 1 - 36 ein."); 
+        while (!scnr.hasNextInt()) {
+          System.out.println("Bitte geben sie eine Zahl ein");
+          scnr.next();
+        }
+        ucs2 = scnr.nextInt(); 
+      } while (ucs2 > 1 && ucs2 > 36);
+    } 
     // get amount
     System.out.println("Wieviel möchtest du einsetzen?");
-    try {
-      uba = scnr.nextLine(); 
-      if (Integer.valueOf(uba) > umoney) { 
-        System.out.println("Du hast nicht genug Geld"); 
-        userinput();
+    do {
+      while (!scnr.hasNextInt()) {
+        System.out.println("Bitte geben sie eine Gültige Zahl an, ihr Kontostand beträgt " + umoney);
+        scnr.next();
       }
-    } catch (Exception e) {
-      System.out.println("Ungültiger Input"); 
-      userinput();
-    }
+      uba = scnr.nextInt();
+    } while (uba >= umoney && uba > 1);
     // append to array and return
     uir[0] = uc;
-    uir[1] = uba;
+    uir[1] = String.valueOf(uba);
     return uir;
   }
 
