@@ -3,13 +3,14 @@ import java.util.Scanner;
 import java.util.Arrays;
 import java.util.List;
 import java.io.IOException;
+import java.lang.Thread;
 
 /* TODO:
  * gambling knowledge of MIBB
  *   Maybe find out how to clear console */
 
 public class Roulette {
-  public static final double VERSION=0.31;
+  public static final double VERSION=0.32;
   // constants for text manipulation in terminal
   public static final String RESET = "\033[0m";
   public static final String BOLD = "\033[1m";
@@ -33,6 +34,8 @@ public class Roulette {
   public static final String PURPLE_BACKGROUND = "\033[45m";
   public static final String CYAN_BACKGROUND = "\033[46m";
   public static final String WHITE_BACKGROUND = "\033[47m";
+
+  public static final String CLAER = "\033[H\033[2J";
 
   // define arrays with numbers
   public static final int[] REDNUMS             = { 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };
@@ -113,6 +116,7 @@ public class Roulette {
     } else {
       uir[0] =uc;
     }
+
     // get amount
     System.out.println("Wieviel möchtest du einsetzen?");
     do {
@@ -170,6 +174,9 @@ public class Roulette {
 
         """;
     System.out.println(weeeeeeeeeeeeeeeeeeeeee);
+    // increase time when pushed to main
+    try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
+    System.out.println(CLAER);
   }
 
   public static int xit() {
