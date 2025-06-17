@@ -56,6 +56,7 @@ public class Roulette {
   public static int umoney = 1000;
 
   public static int highscore = 0;
+  public static int multiplyer = 0;
 
   // create scanner object
   static Scanner scnr = new Scanner(System.in);
@@ -71,7 +72,7 @@ public class Roulette {
 
     // get user answer
     String stansw = scnr.nextLine();
-    if (stansw.equals("info")) {
+    if (stansw.toLowerCase().equals("info")) {
       info();
     }
     // TODO: Add function call for function that gets previous highscore
@@ -187,13 +188,33 @@ public class Roulette {
     return 0;
   }
 
+  public static int checker(String[] x, int a2) {
+    int ubac = Integer.valueOf(x[1]);
+    String ucc = x[0];
+    try {
+      Integer.parseInt(ucc);
+      if (a2 == Integer.valueOf(ucc)) {
+        return 36;
+      }
+      // System.out.println(ucc + " is a number");
+      }
+    catch (NumberFormatException e) {
+      // System.out.println(ucc + " is NOT a number");
+      }
+
+
+    // outcomes
+    //System.out.println("Sie haben + " + (ubac * multiplyer) + GREEN + " gewonnen" + RESET + " \\^o^/");
+    //System.out.println("Sie haben ihre Wette " + RED + "verloren" + RESET + " :/ ");
+
+    return multiplyer;
+  }
   // main function
   public static void main(String args[]) {
     start();
-    // get userinput
-    uir = userinput();
-    System.out.println("target: " + uir[0]);
-    System.out.println("amount: " + uir[1]);
+    int rnum = rand();
+    multiplyer = checker(userinput(), rnum);
+    System.out.println(multiplyer);
     xit();
   }
 } 
