@@ -134,7 +134,6 @@ public class Roulette {
   public static void info() {
     String weeeeeeeeeeeeeeeeeeeeee = """
         
-
     Rot oder Schwarz
         Du wettest auf die Farbe der Zahl.
         Die “0” ist grün und bedeutet bei einer Farb­wette automatisch Verlust.
