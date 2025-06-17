@@ -3,6 +3,7 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 /* TODO:
+Add function call for function that gets previous highscore
  * - Function that gets previous score
  *   Function for animation
  *   Other functions
@@ -70,7 +71,6 @@ public class Roulette {
     if (stansw.toLowerCase().equals("info")) {
       info();
     }
-    // TODO: Add function call for function that gets previous highscore
   }
 
   public static String[] uir = new String[2];
