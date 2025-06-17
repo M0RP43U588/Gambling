@@ -132,7 +132,42 @@ public class Roulette {
 
   // information function
   public static void info() {
-    System.out.println("placeholder for game information");
+    String weeeeeeeeeeeeeeeeeeeeee = """
+        
+
+    Rot oder Schwarz
+        Du wettest auf die Farbe der Zahl.
+        Die “0” ist grün und bedeutet bei einer Farb­wette automatisch Verlust.
+        Gewinn: Verdoppelung deines Einsatzes (Auszahlung 2 ×).
+
+    Gerade oder Ungerade
+        Du wettest darauf, ob die Zahl gerade oder ungerade ist.
+        Die “0” gilt hier ebenfalls als Verlust.
+        Gewinn: Verdoppelung deines Einsatzes (2 ×).
+
+    Niedrig (1–18) oder Hoch (19–36)
+        Du wettest, in welchem der beiden Blöcke die Zahl liegt.
+        Die “0” führt zum Verlust.
+        Gewinn: Verdoppelung deines Einsatzes (2 ×).
+
+    Reihen (1., 2. oder 3. Reihe)
+            Reihe: Zahlen 1, 4, 7, …, 34
+            Reihe: Zahlen 2, 5, 8, …, 35
+            Reihe: Zahlen 3, 6, 9, …, 36
+        Die “0” gehört zu keiner Reihe.
+        Gewinn: Verdreifachung deines Einsatzes (3 ×).
+
+    Dutzend (1.–12., 13.–24. oder 25.–36.)
+        Du wählst eines der drei Dutzende aus.
+        Die “0” führt zum Verlust.
+        Gewinn: Verdreifachung deines Einsatzes (3 ×).
+
+    Einzelzahl (Straight Up)
+        Du wettest auf genau eine Zahl (1–36).
+        Trifft genau deine Zahl, gewinnst du das 36-Fache deines Einsatzes.
+
+        """;
+    System.out.println(weeeeeeeeeeeeeeeeeeeeee);
   }
 
   // function that determines win and returns multiplier
