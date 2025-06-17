@@ -1,8 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Arrays;
-import java.util.List;
-import java.io.IOException;
 
 /* TODO:
  * - Function that gets previous score
@@ -11,7 +9,7 @@ import java.io.IOException;
  *   Maybe find out how to clear console */
 
 public class Roulette {
-  public static final double VERSION=0.23;
+  public static final double VERSION=0.31;
   // constants for text manipulation in terminal
   public static final String RESET = "\033[0m";
   public static final String BOLD = "\033[1m";
@@ -67,7 +65,7 @@ public class Roulette {
 
     // get user answer
     String stansw = scnr.nextLine();
-    if (stansw.equals("info")) {
+    if (stansw.toLowerCase().equals("info")) {
       info();
     }
     // TODO: Add function call for function that gets previous highscore
@@ -173,6 +171,9 @@ public class Roulette {
   public static void main(String args[]) {
     start();
     String[] uInput = userinput();
+    for (int i = 0; i < uInput.length; i++){
+      System.out.print(uInput[i]);
+    }
     // close scanner
     scnr.close();
   }
