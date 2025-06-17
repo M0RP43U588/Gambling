@@ -52,6 +52,8 @@ public class Roulette {
   // start money
   public static int umoney = 1000;
 
+  public static int multiplyer = 0;
+
   // create scanner object
   static Scanner scnr = new Scanner(System.in);
 
@@ -167,13 +169,33 @@ public class Roulette {
     System.out.println(weeeeeeeeeeeeeeeeeeeeee);
   }
 
+  public static int checker(String[] x, int a2) {
+    int ubac = Integer.valueOf(x[1]);
+    String ucc = x[0];
+    try {
+      Integer.parseInt(ucc);
+      
+      // System.out.println(ucc + " is a number");
+      }
+    catch (NumberFormatException e) {
+      // System.out.println(ucc + " is NOT a number");
+      }
+
+
+    // outcomes
+    System.out.println("Sie haben + " + (ubac * multiplyer) + GREEN + " gewonnen" + RESET + " \\^o^/");
+    System.out.println("Sie haben ihre Wette " + RED + "verloren" + RESET + " :/ ");
+
+    return multiplyer;
+  }
   // main function
   public static void main(String args[]) {
     start();
+    int antagonist = rand();
     String[] uInput = userinput();
-    for (int i = 0; i < uInput.length; i++){
-      System.out.print(uInput[i]);
-    }
+    int m2 = checker(uInput, antagonist);
+    multiplyer = (multiplyer+m2);
+
     // close scanner
     scnr.close();
   }
