@@ -176,6 +176,7 @@ public class Roulette {
     System.out.println(CLAER);
   }
 
+  // function to properly exit and clean up
   public static int xit() {
     // write highscore
     hs.w(highscore);
@@ -200,6 +201,7 @@ public class Roulette {
       // System.out.println(ucc + " is NOT a number");
     }
     
+    // determine array to iterate over based on user target choice
     if (ucc.equals("gerade")) {if (rnum % 2 == 0){return 1;} else {return 0;}}
     else if (ucc.equals("ungerade")) {if (rnum % 2 == 1){return 1;} else {return 0;}}
     else if (ucc.equals("rot")) {arr = REDNUMS;}
@@ -212,6 +214,7 @@ public class Roulette {
     else {System.out.println("impossible");}
 
 
+    // iterate over array
     for (int i : arr) {
       if (i == rnum) {
         if (arr == REDNUMS || arr == BLACKNUMS || arr == ONE2EIGHTEEN || arr == NINETEEN2THIRTYSIX) {multiplyer = 1;} else {multiplyer = 2;}
@@ -227,7 +230,7 @@ public class Roulette {
     } else {
       System.out.println("Sie haben + " + (Integer.valueOf(uir[1]) * multiplyer) + GREEN + " gewonnen" + RESET + " \\^o^/");
       umoney = Integer.valueOf(uir[1]) * multiplyer;
-      highscore = umoney;
+      if (umoney > highscore) {highscore = umoney;}
     }
   }
   // main function
