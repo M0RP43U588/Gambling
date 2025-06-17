@@ -134,7 +134,7 @@ public class Roulette {
   // random int function
   public static int rand() {
     Random randint = new Random();
-    return randint.nextInt(37);
+    return randint.nextInt(0, 37);
   }
 
   // information function
