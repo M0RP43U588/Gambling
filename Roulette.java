@@ -5,12 +5,8 @@ import java.util.List;
 import java.io.IOException;
 import java.lang.Thread;
 
-/* TODO:
- * gambling knowledge of MIBB
- *   Maybe find out how to clear console */
-
 public class Roulette {
-  public static final double VERSION=0.32;
+  public static final double VERSION=0.40;
   // constants for text manipulation in terminal
   public static final String RESET = "\033[0m";
   public static final String BOLD = "\033[1m";
@@ -140,7 +136,7 @@ public class Roulette {
 
   // information function
   public static void info() {
-    String weeeeeeeeeeeeeeeeeeeeee = """
+    String istr = """
 
     Rot oder Schwarz
         Du wettest auf die Farbe der Zahl.
@@ -174,7 +170,7 @@ public class Roulette {
         Trifft genau deine Zahl, gewinnst du das 36-Fache deines Einsatzes.
 
         """;
-    System.out.println(weeeeeeeeeeeeeeeeeeeeee);
+    System.out.println(istr);
     // increase time when pushed to main
     try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
     System.out.println(CLAER);
@@ -188,33 +184,58 @@ public class Roulette {
     return 0;
   }
 
-  public static int checker(String[] x, int a2) {
-    int ubac = Integer.valueOf(x[1]);
+  // returns the multiplier
+  public static int checker(String[] x, int rnum) {
     String ucc = x[0];
+    int arr[] = {0};
+
     try {
       Integer.parseInt(ucc);
-      if (a2 == Integer.valueOf(ucc)) {
+      if (rnum == Integer.valueOf(ucc)) {
         return 36;
-      }
+      } else {return 0;}
       // System.out.println(ucc + " is a number");
-      }
+    }
     catch (NumberFormatException e) {
       // System.out.println(ucc + " is NOT a number");
+    }
+    
+    if (ucc.equals("gerade")) {if (rnum % 2 == 0){return 1;} else {return 0;}}
+    else if (ucc.equals("ungerade")) {if (rnum % 2 == 1){return 1;} else {return 0;}}
+    else if (ucc.equals("rot")) {arr = REDNUMS;}
+    else if (ucc.equals("schwarz")) {arr = BLACKNUMS;}
+    else if (ucc.equals("1-18")) {arr = ONE2EIGHTEEN;}
+    else if (ucc.equals("19-36")) {arr = NINETEEN2THIRTYSIX;}
+    else if (ucc.equals("erste 12")) {arr = FIRSTTWELVE;}
+    else if (ucc.equals("zweite 12")) {arr = SECONDTWELVE;}
+    else if (ucc.equals("dritte 12")) {arr = THIRDTWELVE;}
+    else {System.out.println("impossible");}
+
+
+    for (int i : arr) {
+      if (i == rnum) {
+        if (arr == REDNUMS || arr == BLACKNUMS || arr == ONE2EIGHTEEN || arr == NINETEEN2THIRTYSIX) {multiplyer = 1;} else {multiplyer = 2;}
       }
-
-
-    // outcomes
-    //System.out.println("Sie haben + " + (ubac * multiplyer) + GREEN + " gewonnen" + RESET + " \\^o^/");
-    //System.out.println("Sie haben ihre Wette " + RED + "verloren" + RESET + " :/ ");
+    }
 
     return multiplyer;
+  }
+
+  public static void worl(int m) {
+    if (m == 0) {
+    System.out.println("Sie haben ihre Wette " + RED + "verloren" + RESET + " :/ ");
+    } else {
+      System.out.println("Sie haben + " + (Integer.valueOf(uir[1]) * multiplyer) + GREEN + " gewonnen" + RESET + " \\^o^/");
+      umoney = Integer.valueOf(uir[1]) * multiplyer;
+      highscore = umoney;
+    }
   }
   // main function
   public static void main(String args[]) {
     start();
     int rnum = rand();
     multiplyer = checker(userinput(), rnum);
-    System.out.println(multiplyer);
+    worl(multiplyer);
     xit();
   }
 } 
