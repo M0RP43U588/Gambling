@@ -9,7 +9,7 @@ import java.io.IOException;
  *   Maybe find out how to clear console */
 
 public class Roulette {
-  public static final double VERSION=0.30;
+  public static final double VERSION=0.31;
   // constants for text manipulation in terminal
   public static final String RESET = "\033[0m";
   public static final String BOLD = "\033[1m";
@@ -52,10 +52,13 @@ public class Roulette {
   // start money
   public static int umoney = 1000;
 
+  public static int highscore = 0;
+
   // create scanner object
   static Scanner scnr = new Scanner(System.in);
 
   public static void start() {
+    hs.r();
     System.out.printf("Roulette version: %.02f\n", VERSION);
     System.out.println("/--------------------------\\");
     System.out.println("|   Type \"go\" to start     | ");
@@ -133,7 +136,6 @@ public class Roulette {
   // information function
   public static void info() {
     String weeeeeeeeeeeeeeeeeeeeee = """
-        
 
     Rot oder Schwarz
         Du wettest auf die Farbe der Zahl.
@@ -170,14 +172,13 @@ public class Roulette {
     System.out.println(weeeeeeeeeeeeeeeeeeeeee);
   }
 
-  // function that determines win and returns multiplier
-  //public static int moment(int rnumattr, int unum) {
-  //}
-
-  // function that takes number and returns its attributes
-  // for example whether its reb or bllllack
-  //public static String[] getattr(int num) {
-  //}
+  public static int xit() {
+    // write highscore
+    hs.w(highscore);
+    // close scanner
+    scnr.close();
+    return 0;
+  }
 
   // main function
   public static void main(String args[]) {
@@ -186,7 +187,6 @@ public class Roulette {
     uir = userinput();
     System.out.println("target: " + uir[0]);
     System.out.println("amount: " + uir[1]);
-    // close scanner
-    scnr.close();
+    xit();
   }
 } 
