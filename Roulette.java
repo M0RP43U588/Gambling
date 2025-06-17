@@ -48,7 +48,7 @@ public class Roulette {
   public static final int[] ONE2EIGHTEEN        = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ,13, 14, 15, 16, 17, 18 };
   public static final int[] NINETEEN2THIRTYSIX  = { 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 };
   public static final String[] AC               = { "erste 12", "zweite 12", "dritte 12", "1-18", "gerade", "rot", "schwarz", "ungerade", "19-36", "z"};
-  
+
   // start money
   public static int umoney = 1000;
 
@@ -106,7 +106,10 @@ public class Roulette {
         }
         ucs2 = scnr.nextInt(); 
       } while (ucs2 > 1 && ucs2 > 36);
-    } 
+      uir[0] = String.valueOf(ucs2);
+    } else {
+      uir[0] =uc;
+    }
     // get amount
     System.out.println("Wieviel möchtest du einsetzen?");
     do {
@@ -115,9 +118,8 @@ public class Roulette {
         scnr.next();
       }
       uba = scnr.nextInt();
-    } while (uba >= umoney && uba > 1);
+    } while (uba > umoney || uba < 1);
     // append to array and return
-    uir[0] = ucs2;
     uir[1] = String.valueOf(uba);
     return uir;
   }
@@ -134,13 +136,13 @@ public class Roulette {
   }
 
   // function that determines win and returns multiplier
-  public static int moment(int rnumattr, int unum) {
-  }
+  //public static int moment(int rnumattr, int unum) {
+  //}
 
   // function that takes number and returns its attributes
   // for example whether its reb or bllllack
-  public static String[] getattr(int num) {
-  }
+  //public static String[] getattr(int num) {
+  //}
 
   // main function
   public static void main(String args[]) {
