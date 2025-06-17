@@ -11,7 +11,7 @@ import java.io.IOException;
  *   Maybe find out how to clear console */
 
 public class Roulette {
-  public static final double VERSION=0.24;
+  public static final double VERSION=0.30;
   // constants for text manipulation in terminal
   public static final String RESET = "\033[0m";
   public static final String BOLD = "\033[1m";
