@@ -1,16 +1,16 @@
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Arrays;
+import java.util.List;
+import java.io.IOException;
+import java.lang.Thread;
 
 /* TODO:
-Add function call for function that gets previous highscore
- * - Function that gets previous score
- *   Function for animation
- *   Other functions
+ * gambling knowledge of MIBB
  *   Maybe find out how to clear console */
 
 public class Roulette {
-  public static final double VERSION=0.31;
+  public static final double VERSION=0.32;
   // constants for text manipulation in terminal
   public static final String RESET = "\033[0m";
   public static final String BOLD = "\033[1m";
@@ -35,6 +35,8 @@ public class Roulette {
   public static final String CYAN_BACKGROUND = "\033[46m";
   public static final String WHITE_BACKGROUND = "\033[47m";
 
+  public static final String CLAER = "\033[H\033[2J";
+
   // define arrays with numbers
   public static final int[] REDNUMS             = { 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };
   public static final int[] BLACKNUMS           = { 2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35 };
@@ -48,17 +50,19 @@ public class Roulette {
   public static final int[] THIRDCOL            = { 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36 };
   public static final int[] ONE2EIGHTEEN        = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ,13, 14, 15, 16, 17, 18 };
   public static final int[] NINETEEN2THIRTYSIX  = { 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 };
-  public static final String[] AC               = {"erste 12", "zweite 12", "dritte 12", "1-18", "gerade", "rot", "schwarz", "ungerade", "19-36", "z"};
-  
+  public static final String[] AC               = { "erste 12", "zweite 12", "dritte 12", "1-18", "gerade", "rot", "schwarz", "ungerade", "19-36", "z"};
+
   // start money
   public static int umoney = 1000;
 
+  public static int highscore = 0;
   public static int multiplyer = 0;
 
   // create scanner object
   static Scanner scnr = new Scanner(System.in);
 
   public static void start() {
+    hs.r();
     System.out.printf("Roulette version: %.02f\n", VERSION);
     System.out.println("/--------------------------\\");
     System.out.println("|   Type \"go\" to start     | ");
@@ -75,8 +79,8 @@ public class Roulette {
 
   public static String[] uir = new String[2];
   public static String uc;
-  public static String uba;
-
+  public static int  ucs2;
+  public static int uba;
   public static String[] userinput() {
     System.out.println("-------------------------|" + GREEN_BACKGROUND + " 0 " + RESET + "|----------------------------");
     System.out.println("|" + RED_BACKGROUND + " 3 " + RESET + "|" + BLACK_BACKGROUND + " 6 " + RESET + "|"+ RED_BACKGROUND + " 9 " + RESET + "|" + RED_BACKGROUND + " 12 " + RESET + "|" + BLACK_BACKGROUND+ " 15 " + RESET + "|" + RED_BACKGROUND + " 18 " + RESET + "|" + RED_BACKGROUND + " 21 " + RESET + "|"+ BLACK_BACKGROUND + " 24 " + RESET + "|" + RED_BACKGROUND + " 27 " + RESET + "|" + RED_BACKGROUND+ " 30 " + RESET + "|" + BLACK_BACKGROUND + " 33 " + RESET + "|" + RED_BACKGROUND + " 36 " + RESET+ "| <- Reihe 3");
@@ -90,50 +94,53 @@ public class Roulette {
     System.out.println("|                   Belibige Zahl ('z')                  |");
     System.out.println("----------------------------------------------------------");
     System.out.println("Sie haben " + YELLOW + umoney + " CHF" + RESET);
-    System.out.println("Auf was wollen sie wetten? ");
+    System.out.println("Auf was wollen Sie Wetten? ");
+
     // get target
-    uc = scnr.nextLine().toLowerCase(); 
-    if (!(Arrays.asList(AC).contains(uc))) {
-      System.out.println("etwas ist falsch gelaufen"); 
-      userinput();
-    }
+    do {
+      uc = scnr.nextLine().toLowerCase(); 
+      if (!(Arrays.asList(AC).contains(uc))) {System.out.println(uc + " ist ungültig");}
+    } while (!(Arrays.asList(AC).contains(uc)));
+
     // get exact num if target == z
     if (uc.equals("z")) { 
-      System.out.println("Welche Zahl genau?"); 
-      uc = scnr.nextLine(); 
-      if (Integer.valueOf(uc) > 36 || Integer.valueOf(uc) < 1) {
-        System.out.println("Ungültiger Input"); 
-        userinput();
-      }
+      do {
+        System.out.println("Geben sie eine Zahl zwischen 1 - 36 ein."); 
+        while (!scnr.hasNextInt()) {
+          System.out.println("Bitte geben sie eine Zahl ein");
+          scnr.next();
+        }
+        ucs2 = scnr.nextInt(); 
+      } while (ucs2 > 1 && ucs2 > 36);
+      uir[0] = String.valueOf(ucs2);
+    } else {
+      uir[0] =uc;
     }
+
     // get amount
     System.out.println("Wieviel möchtest du einsetzen?");
-    try {
-      uba = scnr.nextLine(); 
-      if (Integer.valueOf(uba) > umoney) { 
-        System.out.println("Du hast nicht genug Geld"); 
-        userinput();
+    do {
+      while (!scnr.hasNextInt()) {
+        System.out.println("Bitte geben sie eine Gültige Zahl an, ihr Kontostand beträgt " + umoney);
+        scnr.next();
       }
-    } catch (Exception e) {
-      System.out.println("Ungültiger Input"); 
-      userinput();
-    }
+      uba = scnr.nextInt();
+    } while (uba > umoney || uba < 1);
     // append to array and return
-    uir[0] = uc;
-    uir[1] = uba;
+    uir[1] = String.valueOf(uba);
     return uir;
   }
 
   // random int function
   public static int rand() {
     Random randint = new Random();
-    return randint.nextInt(37);
+    return randint.nextInt(0, 37);
   }
 
   // information function
   public static void info() {
     String weeeeeeeeeeeeeeeeeeeeee = """
-        
+
     Rot oder Schwarz
         Du wettest auf die Farbe der Zahl.
         Die “0” ist grün und bedeutet bei einer Farb­wette automatisch Verlust.
@@ -167,6 +174,17 @@ public class Roulette {
 
         """;
     System.out.println(weeeeeeeeeeeeeeeeeeeeee);
+    // increase time when pushed to main
+    try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
+    System.out.println(CLAER);
+  }
+
+  public static int xit() {
+    // write highscore
+    hs.w(highscore);
+    // close scanner
+    scnr.close();
+    return 0;
   }
 
   public static int checker(String[] x, int a2) {
@@ -174,7 +192,9 @@ public class Roulette {
     String ucc = x[0];
     try {
       Integer.parseInt(ucc);
-      
+      if (a2 == Integer.valueOf(ucc)) {
+        return 36;
+      }
       // System.out.println(ucc + " is a number");
       }
     catch (NumberFormatException e) {
@@ -183,20 +203,17 @@ public class Roulette {
 
 
     // outcomes
-    System.out.println("Sie haben + " + (ubac * multiplyer) + GREEN + " gewonnen" + RESET + " \\^o^/");
-    System.out.println("Sie haben ihre Wette " + RED + "verloren" + RESET + " :/ ");
+    //System.out.println("Sie haben + " + (ubac * multiplyer) + GREEN + " gewonnen" + RESET + " \\^o^/");
+    //System.out.println("Sie haben ihre Wette " + RED + "verloren" + RESET + " :/ ");
 
     return multiplyer;
   }
   // main function
   public static void main(String args[]) {
     start();
-    int antagonist = rand();
-    String[] uInput = userinput();
-    int m2 = checker(uInput, antagonist);
-    multiplyer = (multiplyer+m2);
-
-    // close scanner
-    scnr.close();
+    int rnum = rand();
+    multiplyer = checker(userinput(), rnum);
+    System.out.println(multiplyer);
+    xit();
   }
 } 
