@@ -5,9 +5,7 @@ import java.util.List;
 import java.io.IOException;
 
 /* TODO:
- * - Function that gets previous score
- *   Function for animation
- *   Other functions
+ * gambling knowledge of MIBB
  *   Maybe find out how to clear console */
 
 public class Roulette {
@@ -133,6 +131,15 @@ public class Roulette {
   // information function
   public static void info() {
     System.out.println("placeholder for game information");
+  }
+
+  // function that determines win and returns multiplier
+  public static int moment(int rnumattr, int unum) {
+  }
+
+  // function that takes number and returns its attributes
+  // for example whether its reb or bllllack
+  public static String[] getattr(int num) {
   }
 
   // main function
