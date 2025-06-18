@@ -71,7 +71,6 @@ public class Roulette {
     if (stansw.toLowerCase().equals("info")) {
       info();
     }
-    // TODO: Add function call for function that gets previous highscore
   }
 
   public static String[] uir = new String[2];
