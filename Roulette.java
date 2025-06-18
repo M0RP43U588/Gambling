@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.lang.Thread;
 
 public class Roulette {
-  public static final double VERSION=0.44;
+  public static final double VERSION=0.50;
   // constants for text manipulation in terminal
   public static final String RESET = "\033[0m";
   public static final String BOLD = "\033[1m";
@@ -186,7 +186,44 @@ public class Roulette {
     pm(1000);
     System.out.println(CLAER);
   }
+    public static void anim(int antagonist) {
+        int i = 0;
+        String texture1 = "   ";                    
+        String texture2 = "" + WHITE_BACKGROUND + " o " + RESET + "";
+        //I ist der Inderx der variable welche sich in der Animaion bewegt
+        while (i <= (antagonist + 111)) {
+            String[] slots = new String[37];
+            int target = i % 37;
 
+            for (int idx = 0; idx < 37; idx++) {
+                slots[idx] = (idx == target)
+                 ? texture2
+                 : texture1;
+            }
+            System.out.println("                                 ________________________________                       ");
+            System.out.println("                               /      " + slots[36] + RED_BACKGROUND + " 36 "    + RESET + "    " + GREEN_BACKGROUND + " 0 " + RESET + slots[0] + "  " + RED_BACKGROUND + " 1 "    + RESET + slots[1] + "   \\                      ");
+            System.out.println("                            / " + slots[35] + BLACK_BACKGROUND + " 35 " + RESET    + "                           " + BLACK_BACKGROUND + " 2 " + RESET + slots[2]    + " \\                    ");
+            System.out.println("                        /  " + slots[34] + RED_BACKGROUND + " 34 " + RESET    + "                                 " + RED_BACKGROUND + " 3 " + RESET + slots[3]    + "  \\                  ");
+            System.out.println("                    /   " + slots[33] + BLACK_BACKGROUND + " 33 " + RESET    + "                                       " + BLACK_BACKGROUND + " 4 " + RESET + slots[4]    + "  \\               ");
+            System.out.println("                   /   " + slots[32] + RED_BACKGROUND + " 32 " + RESET    + "                                         " + RED_BACKGROUND + " 5 " + RESET + slots[5]    + "   \\             ");
+            System.out.println("                /   " + slots[31] + BLACK_BACKGROUND + " 31 " + RESET    + "                                              " + BLACK_BACKGROUND + " 6 " + RESET    + slots[6] + "  \\            ");
+            System.out.println("               /  " + slots[30] + RED_BACKGROUND + " 30 " + RESET    + "                                                 " + RED_BACKGROUND + " 7 " + RESET    + slots[7] + "  \\           ");
+            System.out.println("              /  " + slots[29] + BLACK_BACKGROUND + " 29 " + RESET    + "                                                   " + BLACK_BACKGROUND + " 8 " + RESET    + slots[8] + "  \\          ");
+            System.out.println("              |  " + slots[28] + BLACK_BACKGROUND + " 28 " + RESET    + "                                                   " + RED_BACKGROUND + " 9 " + RESET    + slots[9] + "  |           ");
+            System.out.println("              \\  " + slots[27] + RED_BACKGROUND + " 27 " + RESET    + "                                                  " + BLACK_BACKGROUND + " 10 " + RESET    + slots[10] + " /           ");
+            System.out.println("               \\  " + slots[26] + BLACK_BACKGROUND + " 26 " + RESET    + "                                                " + BLACK_BACKGROUND + " 11 " + RESET    + slots[11] + " /            ");
+            System.out.println("                \\  " + slots[25] + RED_BACKGROUND + " 25 " + RESET    + "                                              " + RED_BACKGROUND + " 12 " + RESET    + slots[12] + " /             ");
+            System.out.println("                  \\  " + slots[24] + BLACK_BACKGROUND + " 24 " + RESET    + "                                          " + BLACK_BACKGROUND + " 13 " + RESET + slots[13]    + " /               ");
+            System.out.println("                   \\  " + slots[23] + RED_BACKGROUND + " 23 " + RESET    + "                                        " + RED_BACKGROUND + " 14 " + RESET + slots[14]    + " /                ");
+            System.out.println("                      \\  " + slots[22] + BLACK_BACKGROUND + " 22 " + RESET    + "                                  " + BLACK_BACKGROUND + " 15 " + RESET + slots[15]    + "  /                  ");
+            System.out.println("                          \\ " + slots[21] + RED_BACKGROUND + " 21 " + RESET    + "                            " + RED_BACKGROUND + " 16 " + RESET + slots[16]    + "  /                     ");
+            System.out.println("                             \\  " + slots[20] + BLACK_BACKGROUND + " 20 "    + RESET + "                     " + BLACK_BACKGROUND + " 17 " + RESET + slots[17]    + " /                         ");
+            System.out.println("                                    \\   " + slots[19] + RED_BACKGROUND + " 19 "    + RESET + "     " + RED_BACKGROUND + " 18 " + RESET + slots[18]    + "       /                           ");
+            System.out.println("                                     -----------------------------             "                   + "                "); // 20
+            i++;
+            pm(25); 
+        }
+    }
   // function to properly exit and clean up
   public static int xit() {
     // write highscore
@@ -249,8 +286,8 @@ public class Roulette {
   public static void main(String args[]) {
     start();
     int rnum = rand();
-
     multiplyer = checker(userinput(), rnum);
+    anim(rnum);
     worl(multiplyer);
     xit();
     if (umoney == 0) {
@@ -259,6 +296,7 @@ public class Roulette {
     main(args);
     scnr.close();
   }
+
   public static void exit() {
     System.out.println("/----------------------------------------------------\\");        
     System.out.println("|Geben sie an ob sie weiter spielen wollen: ('j'/'n')|");
