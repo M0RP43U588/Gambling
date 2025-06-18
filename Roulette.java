@@ -91,6 +91,7 @@ public class Roulette {
 
   public static void start() {
     if (z == 0) {
+      claer();
       z++;
       highscore = hs.r();
       System.out.printf("Roulette version: %.02f\n", VERSION);
@@ -182,9 +183,17 @@ public class Roulette {
 
   // information function
   public static void info() {
+    claer();
     System.out.println(istr);
-    pm(1000);     // increase time when pushed to main
-    claer();;
+    System.out.println("/----------------------------------------------------\\");
+    System.out.println("|                Sind sie bereit?: ('j')             |");
+    System.out.println("\\---------------------------------------------------/");
+    if (scnr.nextLine().trim().toLowerCase().contentEquals("j")) {
+      start();
+    }
+    else {
+      info();
+    }
   }
 
   public static void claer() {
@@ -204,6 +213,7 @@ public class Roulette {
                  ? texture2
                  : texture1;
             }
+            claer();
             System.out.println("                       ________________________________                       ");
             System.out.println("                     /      " + slots[36] + RED_BACKGROUND + " 36 "    + RESET + "    " + GREEN_BACKGROUND + " 0 " + RESET + slots[0] + "  " + RED_BACKGROUND + " 1 "    + RESET + slots[1] + "   \\");
             System.out.println("                  / " + slots[35] + BLACK_BACKGROUND + " 35 " + RESET    + "                           " + BLACK_BACKGROUND + " 2 " + RESET + slots[2]    + " \\");
@@ -274,8 +284,9 @@ public class Roulette {
     } else {
       System.out.println("Sie haben + " + (Integer.valueOf(uir[1]) * multiplyer) + GREEN + " gewonnen" + RESET + " \\^o^/");
       umoney = (umoney + (Integer.valueOf(uir[1]) * multiplyer));
-      if (umoney > highscore) {highscore = umoney;}
-      System.out.println("Ihr Score ist: " + YELLOW + umoney + RESET + GREEN+"Sie haben eine neue Gesamt-Highscore gesetzt, gut gemacht!"+RESET);
+      if (umoney > highscore) {highscore = umoney;
+      System.out.println("Ihr Score ist: " + YELLOW + umoney + RESET + GREEN+" Sie haben eine neue Gesamt-Highscore gesetzt, gut gemacht!"+RESET);
+      }
     }
   }
   public static int xit() {
@@ -304,7 +315,7 @@ public class Roulette {
     int rnum = rand();
     multiplyer = checker(userinput(), rnum);
     anim(rnum);
-    claer();
+    pm(1000);
     worl(multiplyer);
     pm(2000);
     if (umoney == 0) {
