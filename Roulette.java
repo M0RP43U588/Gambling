@@ -57,11 +57,6 @@ public class Roulette {
   // create scanner object
   public static Scanner scnr = new Scanner(System.in);
 
-  public static String[] uir = new String[2];
-  public static String uc;
-  public static int ucs2;
-  public static int uba;
-
   public static void start() {
     if (z == 0) {
       z++;
@@ -81,6 +76,19 @@ public class Roulette {
     }
   }
 
+  public static void pm(int ms) {
+    try {
+      Thread.sleep(ms);
+    }
+    catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static String[] uir = new String[2];
+  public static String uc;
+  public static int  ucs2;
+  public static int uba;
   public static String[] userinput() {
     System.out.println("-------------------------|" + GREEN_BACKGROUND + " 0 " + RESET + "|----------------------------");
     System.out.println("|" + RED_BACKGROUND + " 3 " + RESET + "|" + BLACK_BACKGROUND + " 6 " + RESET + "|"+ RED_BACKGROUND + " 9 " + RESET + "|" + RED_BACKGROUND + " 12 " + RESET + "|" + BLACK_BACKGROUND+ " 15 " + RESET + "|" + RED_BACKGROUND + " 18 " + RESET + "|" + RED_BACKGROUND + " 21 " + RESET + "|"+ BLACK_BACKGROUND + " 24 " + RESET + "|" + RED_BACKGROUND + " 27 " + RESET + "|" + RED_BACKGROUND+ " 30 " + RESET + "|" + BLACK_BACKGROUND + " 33 " + RESET + "|" + RED_BACKGROUND + " 36 " + RESET+ "| <- Reihe 3");
@@ -175,9 +183,14 @@ public class Roulette {
       """;
     System.out.println(istr);
     // increase time when pushed to main
-    try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
+    pm(1000);
     System.out.println(CLAER);
   }
+
+  // returns the multiplier
+  public static int checker(String[] x, int rnum) {
+    String ucc = x[0];
+    int arr[] = {0};
 
     try {
       Integer.parseInt(ucc);
@@ -228,6 +241,7 @@ public class Roulette {
   public static void main(String args[]) {
     start();
     int rnum = rand();
+
     multiplyer = checker(userinput(), rnum);
     worl(multiplyer);
     if (umoney == 0) {
