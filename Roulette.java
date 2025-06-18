@@ -255,17 +255,39 @@ public class Roulette {
       // System.out.println(ucc + " is NOT a number");
     }
 
-    // determine array to iterate over based on user target choice
-    if (ucc.equals("gerade")) {if (rnum % 2 == 0){return 1;} else {return 0;}}
-    else if (ucc.equals("ungerade")) {if (rnum % 2 == 1){return 1;} else {return 0;}}
-    else if (ucc.equals("rot")) {arr = REDNUMS;}
-    else if (ucc.equals("schwarz")) {arr = BLACKNUMS;}
-    else if (ucc.equals("1-18")) {arr = ONE2EIGHTEEN;}
-    else if (ucc.equals("19-36")) {arr = NINETEEN2THIRTYSIX;}
-    else if (ucc.equals("erste 12")) {arr = FIRSTTWELVE;}
-    else if (ucc.equals("zweite 12")) {arr = SECONDTWELVE;}
-    else if (ucc.equals("dritte 12")) {arr = THIRDTWELVE;}
-    else {System.out.println("impossible");}
+    //  optimization switch > if else
+    switch (ucc) {
+      case "gerade":
+        if (rnum % 2 == 0) return 1;
+        else return 0;
+      case "ungerade":
+        if (rnum % 2 == 1) return 1;
+        else return 0;
+      case "rot":
+        arr = REDNUMS;
+        break;
+      case "schwarz":
+        arr = BLACKNUMS;
+        break;
+      case "1-18":
+        arr = ONE2EIGHTEEN;
+        break;
+      case "19-36":
+        arr = NINETEEN2THIRTYSIX;
+        break;
+      case "erste 12":
+        arr = FIRSTTWELVE;
+        break;
+      case "zweite 12":
+        arr = SECONDTWELVE;
+        break;
+      case "dritte 12":
+        arr = THIRDTWELVE;
+        break;
+      default:
+        System.out.println("hacker");
+        break;
+    }
 
     // iterate over array
     for (int i : arr) {
