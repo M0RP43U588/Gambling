@@ -1,11 +1,10 @@
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Arrays;
-import java.io.IOException;
 import java.lang.Thread;
 
 public class Roulette {
-  public static final double VERSION=0.50;
+  public static final double VERSION=0.51;
   // constants for text manipulation in terminal
   public static final String RESET = "\033[0m";
   public static final String BOLD = "\033[1m";
@@ -53,7 +52,40 @@ public class Roulette {
 
   public static int highscore = 0;
   public static int multiplyer = 0;
+  public static String istr = """
+  Rot oder Schwarz
+      Du wettest auf die Farbe der Zahl.
+      Die “0” ist grün und bedeutet bei einer Farb­wette automatisch Verlust.
+      Gewinn: Verdoppelung deines Einsatzes (Auszahlung 2 ×).
 
+  Gerade oder Ungerade
+      Du wettest darauf, ob die Zahl gerade oder ungerade ist.
+      Die “0” gilt hier ebenfalls als Verlust.
+      Gewinn: Verdoppelung deines Einsatzes (2 ×).
+
+  Niedrig (1–18) oder Hoch (19–36)
+      Du wettest, in welchem der beiden Blöcke die Zahl liegt.
+      Die “0” führt zum Verlust.
+      Gewinn: Verdoppelung deines Einsatzes (2 ×).
+
+  Reihen (1., 2. oder 3. Reihe)
+          Reihe: Zahlen 1, 4, 7, …, 34
+          Reihe: Zahlen 2, 5, 8, …, 35
+          Reihe: Zahlen 3, 6, 9, …, 36
+      Die “0” gehört zu keiner Reihe.
+      Gewinn: Verdreifachung deines Einsatzes (3 ×).
+
+  Dutzend (1.–12., 13.–24. oder 25.–36.)
+      Du wählst eines der drei Dutzende aus.
+      Die “0” führt zum Verlust.
+      Gewinn: Verdreifachung deines Einsatzes (3 ×).
+
+  Einzelzahl (Straight Up)
+      Du wettest auf genau eine Zahl (1–36).
+      Trifft genau deine Zahl, gewinnst du das 36-Fache deines Einsatzes.
+
+      """;
+  
   // create scanner object
   static Scanner scnr = new Scanner(System.in);
 
@@ -147,50 +179,14 @@ public class Roulette {
 
   // information function
   public static void info() {
-    String istr = """
-
-    Rot oder Schwarz
-        Du wettest auf die Farbe der Zahl.
-        Die “0” ist grün und bedeutet bei einer Farb­wette automatisch Verlust.
-        Gewinn: Verdoppelung deines Einsatzes (Auszahlung 2 ×).
-
-    Gerade oder Ungerade
-        Du wettest darauf, ob die Zahl gerade oder ungerade ist.
-        Die “0” gilt hier ebenfalls als Verlust.
-        Gewinn: Verdoppelung deines Einsatzes (2 ×).
-
-    Niedrig (1–18) oder Hoch (19–36)
-        Du wettest, in welchem der beiden Blöcke die Zahl liegt.
-        Die “0” führt zum Verlust.
-        Gewinn: Verdoppelung deines Einsatzes (2 ×).
-
-    Reihen (1., 2. oder 3. Reihe)
-            Reihe: Zahlen 1, 4, 7, …, 34
-            Reihe: Zahlen 2, 5, 8, …, 35
-            Reihe: Zahlen 3, 6, 9, …, 36
-        Die “0” gehört zu keiner Reihe.
-        Gewinn: Verdreifachung deines Einsatzes (3 ×).
-
-    Dutzend (1.–12., 13.–24. oder 25.–36.)
-        Du wählst eines der drei Dutzende aus.
-        Die “0” führt zum Verlust.
-        Gewinn: Verdreifachung deines Einsatzes (3 ×).
-
-    Einzelzahl (Straight Up)
-        Du wettest auf genau eine Zahl (1–36).
-        Trifft genau deine Zahl, gewinnst du das 36-Fache deines Einsatzes.
-
-        """;
     System.out.println(istr);
-    // increase time when pushed to main
-    pm(1000);
-    System.out.println(CLAER);
+    pm(1000);     // increase time when pushed to main
+    //System.out.println(CLAER);
   }
     public static void anim(int antagonist) {
         int i = 0;
         String texture1 = "   ";                    
         String texture2 = "" + WHITE_BACKGROUND + " o " + RESET + "";
-        //I ist der Inderx der variable welche sich in der Animaion bewegt
         while (i <= (antagonist + 111)) {
             String[] slots = new String[37];
             int target = i % 37;
