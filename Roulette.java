@@ -55,7 +55,12 @@ public class Roulette {
   public static int multiplyer = 0;
 
   // create scanner object
-  static Scanner scnr = new Scanner(System.in);
+  public static Scanner scnr = new Scanner(System.in);
+
+  public static String[] uir = new String[2];
+  public static String uc;
+  public static int ucs2;
+  public static int uba;
 
   public static void start() {
     if (z == 0) {
@@ -67,7 +72,7 @@ public class Roulette {
       System.out.println("|--------------------------|");
       System.out.println("|  Type \"info\" for into    | ");
       System.out.println("\\--------------------------/ ");
-  
+
       // get user answer
       String stansw = scnr.nextLine();
       if (stansw.toLowerCase().equals("info")) {
@@ -76,10 +81,6 @@ public class Roulette {
     }
   }
 
-  public static String[] uir = new String[2];
-  public static String uc;
-  public static int  ucs2;
-  public static int uba;
   public static String[] userinput() {
     System.out.println("-------------------------|" + GREEN_BACKGROUND + " 0 " + RESET + "|----------------------------");
     System.out.println("|" + RED_BACKGROUND + " 3 " + RESET + "|" + BLACK_BACKGROUND + " 6 " + RESET + "|"+ RED_BACKGROUND + " 9 " + RESET + "|" + RED_BACKGROUND + " 12 " + RESET + "|" + BLACK_BACKGROUND+ " 15 " + RESET + "|" + RED_BACKGROUND + " 18 " + RESET + "|" + RED_BACKGROUND + " 21 " + RESET + "|"+ BLACK_BACKGROUND + " 24 " + RESET + "|" + RED_BACKGROUND + " 27 " + RESET + "|" + RED_BACKGROUND+ " 30 " + RESET + "|" + BLACK_BACKGROUND + " 33 " + RESET + "|" + RED_BACKGROUND + " 36 " + RESET+ "| <- Reihe 3");
@@ -140,57 +141,49 @@ public class Roulette {
   public static void info() {
     String istr = """
 
-    Rot oder Schwarz
-        Du wettest auf die Farbe der Zahl.
-        Die “0” ist grün und bedeutet bei einer Farb­wette automatisch Verlust.
-        Gewinn: Verdoppelung deines Einsatzes (Auszahlung 2 ×).
+      Rot oder Schwarz
+      Du wettest auf die Farbe der Zahl.
+      Die “0” ist grün und bedeutet bei einer Farb­wette automatisch Verlust.
+      Gewinn: Verdoppelung deines Einsatzes (Auszahlung 2 ×).
 
-    Gerade oder Ungerade
-        Du wettest darauf, ob die Zahl gerade oder ungerade ist.
-        Die “0” gilt hier ebenfalls als Verlust.
-        Gewinn: Verdoppelung deines Einsatzes (2 ×).
+      Gerade oder Ungerade
+      Du wettest darauf, ob die Zahl gerade oder ungerade ist.
+      Die “0” gilt hier ebenfalls als Verlust.
+      Gewinn: Verdoppelung deines Einsatzes (2 ×).
 
-    Niedrig (1–18) oder Hoch (19–36)
-        Du wettest, in welchem der beiden Blöcke die Zahl liegt.
-        Die “0” führt zum Verlust.
-        Gewinn: Verdoppelung deines Einsatzes (2 ×).
+      Niedrig (1–18) oder Hoch (19–36)
+      Du wettest, in welchem der beiden Blöcke die Zahl liegt.
+      Die “0” führt zum Verlust.
+      Gewinn: Verdoppelung deines Einsatzes (2 ×).
 
-    Reihen (1., 2. oder 3. Reihe)
-            Reihe: Zahlen 1, 4, 7, …, 34
-            Reihe: Zahlen 2, 5, 8, …, 35
-            Reihe: Zahlen 3, 6, 9, …, 36
-        Die “0” gehört zu keiner Reihe.
-        Gewinn: Verdreifachung deines Einsatzes (3 ×).
+      Reihen (1., 2. oder 3. Reihe)
+      Reihe: Zahlen 1, 4, 7, …, 34
+      Reihe: Zahlen 2, 5, 8, …, 35
+      Reihe: Zahlen 3, 6, 9, …, 36
+      Die “0” gehört zu keiner Reihe.
+      Gewinn: Verdreifachung deines Einsatzes (3 ×).
 
-    Dutzend (1.–12., 13.–24. oder 25.–36.)
-        Du wählst eines der drei Dutzende aus.
-        Die “0” führt zum Verlust.
-        Gewinn: Verdreifachung deines Einsatzes (3 ×).
+      Dutzend (1.–12., 13.–24. oder 25.–36.)
+      Du wählst eines der drei Dutzende aus.
+      Die “0” führt zum Verlust.
+      Gewinn: Verdreifachung deines Einsatzes (3 ×).
 
-    Einzelzahl (Straight Up)
-        Du wettest auf genau eine Zahl (1–36).
-        Trifft genau deine Zahl, gewinnst du das 36-Fache deines Einsatzes.
+      Einzelzahl (Straight Up)
+      Du wettest auf genau eine Zahl (1–36).
+      Trifft genau deine Zahl, gewinnst du das 36-Fache deines Einsatzes.
 
-        """;
+      """;
     System.out.println(istr);
     // increase time when pushed to main
     try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
     System.out.println(CLAER);
   }
 
-  // function to properly exit and clean up
-  public static int xit() {
-    // write highscore
-    hs.w(highscore);
-    // close scanner
-    return 0;
-  }
-  
   // returns the multiplier
   public static int checker(String[] x, int rnum) {
     String ucc = x[0];
     int arr[] = {0};
-    
+
     try {
       Integer.parseInt(ucc);
       if (rnum == Integer.valueOf(ucc)) {
@@ -201,7 +194,7 @@ public class Roulette {
     catch (NumberFormatException e) {
       // System.out.println(ucc + " is NOT a number");
     }
-    
+
     // determine array to iterate over based on user target choice
     if (ucc.equals("gerade")) {if (rnum % 2 == 0){return 1;} else {return 0;}}
     else if (ucc.equals("ungerade")) {if (rnum % 2 == 1){return 1;} else {return 0;}}
@@ -213,17 +206,17 @@ public class Roulette {
     else if (ucc.equals("zweite 12")) {arr = SECONDTWELVE;}
     else if (ucc.equals("dritte 12")) {arr = THIRDTWELVE;}
     else {System.out.println("impossible");}
-    
+
     // iterate over array
     for (int i : arr) {
       if (i == rnum) {
         if (arr == REDNUMS || arr == BLACKNUMS || arr == ONE2EIGHTEEN || arr == NINETEEN2THIRTYSIX) {multiplyer = 1;} else {multiplyer = 2;}
       }
     }
-    
+
     return multiplyer;
   }
-  
+
   public static void worl(int m) {
     if (m == 0) {
       System.out.println("Sie haben ihre Wette " + RED + "verloren" + RESET + " :/ ");
@@ -234,22 +227,20 @@ public class Roulette {
       if (umoney > highscore) {highscore = umoney;}
     }
   }
-      //          System.out.println("Ihr Score ist: " + YELLOW + score+ RESET + ", ihre Session-Highscore ist: "+ PURPLE + highscore + RESET +  ", der Gesamt-Highscore ist: " + CYAN + highscoreFromFile + RESET);
-    //            System.out.println(YELLOW+"Sie haben eine neue Gesamt-Highscore gesetzt, gut gemacht!"+RESET); 
+  //          System.out.println("Ihr Score ist: " + YELLOW + score+ RESET + ", ihre Session-Highscore ist: "+ PURPLE + highscore + RESET +  ", der Gesamt-Highscore ist: " + CYAN + highscoreFromFile + RESET);
+  //            System.out.println(YELLOW+"Sie haben eine neue Gesamt-Highscore gesetzt, gut gemacht!"+RESET); 
   // main function
   public static void main(String args[]) {
     start();
     int rnum = rand();
     multiplyer = checker(userinput(), rnum);
     worl(multiplyer);
-    xit();
     if (umoney == 0) {
       exit();
     }
     main(args);
-    scnr.close();
   }
-  public static void exit() {
+  public static int exit() {
     System.out.println("/----------------------------------------------------\\");        
     System.out.println("|Geben sie an ob sie weiter spielen wollen: ('j'/'n')|");
     System.out.println("\\---------------------------------------------------/");
@@ -257,11 +248,18 @@ public class Roulette {
     if (ei.contains("j")) {
       umoney = 1000;
       main(null);}
-      else if (ei.contains("n")) {
-        System.out.println("/----------------------------------------------------\\");        
-        System.out.println("|           Sie haben "+z+" mal gespielt!              |");
-        System.out.println("\\---------------------------------------------------/");
-        System.exit(0);
-      }
+    else if (ei.contains("n")) {
+      System.out.println("/----------------------------------------------------\\");        
+      System.out.println("|           Sie haben "+z+" mal gespielt!              |");
+      System.out.println("\\---------------------------------------------------/");
+      // write highscore
+      hs.w(highscore);
+      // scemmer
+      scnr.close();
+      // close scanner
+      System.exit(0);
+      return 0;
     }
+    return 0;
   }
+}
