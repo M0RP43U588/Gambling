@@ -1,11 +1,10 @@
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Arrays;
-import java.io.IOException;
 import java.lang.Thread;
 
 public class Roulette {
-  public static final double VERSION=0.44;
+  public static final double VERSION=0.51;
   // constants for text manipulation in terminal
   public static final String RESET = "\033[0m";
   public static final String BOLD = "\033[1m";
@@ -53,7 +52,40 @@ public class Roulette {
 
   public static int highscore = 0;
   public static int multiplyer = 0;
+  public static String istr = """
+  Rot oder Schwarz
+      Du wettest auf die Farbe der Zahl.
+      Die “0” ist grün und bedeutet bei einer Farb­wette automatisch Verlust.
+      Gewinn: Verdoppelung deines Einsatzes (Auszahlung 2 ×).
 
+  Gerade oder Ungerade
+      Du wettest darauf, ob die Zahl gerade oder ungerade ist.
+      Die “0” gilt hier ebenfalls als Verlust.
+      Gewinn: Verdoppelung deines Einsatzes (2 ×).
+
+  Niedrig (1–18) oder Hoch (19–36)
+      Du wettest, in welchem der beiden Blöcke die Zahl liegt.
+      Die “0” führt zum Verlust.
+      Gewinn: Verdoppelung deines Einsatzes (2 ×).
+
+  Reihen (1., 2. oder 3. Reihe)
+          Reihe: Zahlen 1, 4, 7, …, 34
+          Reihe: Zahlen 2, 5, 8, …, 35
+          Reihe: Zahlen 3, 6, 9, …, 36
+      Die “0” gehört zu keiner Reihe.
+      Gewinn: Verdreifachung deines Einsatzes (3 ×).
+
+  Dutzend (1.–12., 13.–24. oder 25.–36.)
+      Du wählst eines der drei Dutzende aus.
+      Die “0” führt zum Verlust.
+      Gewinn: Verdreifachung deines Einsatzes (3 ×).
+
+  Einzelzahl (Straight Up)
+      Du wettest auf genau eine Zahl (1–36).
+      Trifft genau deine Zahl, gewinnst du das 36-Fache deines Einsatzes.
+
+      """;
+  
   // create scanner object
   public static Scanner scnr = new Scanner(System.in);
 
@@ -117,7 +149,7 @@ public class Roulette {
       do {
         System.out.print("Geben sie eine Zahl zwischen 1 - 36 ein: "); 
         while (!scnr.hasNextInt()) {
-          System.out.print("Bitte geben sie eine Zahl ein": );
+          System.out.print("Bitte geben sie eine Zahl ein: ");
           scnr.next();
         }
         ucs2 = scnr.nextInt(); 
@@ -150,46 +182,49 @@ public class Roulette {
 
   // information function
   public static void info() {
-    String istr = """
-
-      Rot oder Schwarz
-      Du wettest auf die Farbe der Zahl.
-      Die “0” ist grün und bedeutet bei einer Farb­wette automatisch Verlust.
-      Gewinn: Verdoppelung deines Einsatzes (Auszahlung 2 ×).
-
-      Gerade oder Ungerade
-      Du wettest darauf, ob die Zahl gerade oder ungerade ist.
-      Die “0” gilt hier ebenfalls als Verlust.
-      Gewinn: Verdoppelung deines Einsatzes (2 ×).
-
-      Niedrig (1–18) oder Hoch (19–36)
-      Du wettest, in welchem der beiden Blöcke die Zahl liegt.
-      Die “0” führt zum Verlust.
-      Gewinn: Verdoppelung deines Einsatzes (2 ×).
-
-      Reihen (1., 2. oder 3. Reihe)
-      Reihe: Zahlen 1, 4, 7, …, 34
-      Reihe: Zahlen 2, 5, 8, …, 35
-      Reihe: Zahlen 3, 6, 9, …, 36
-      Die “0” gehört zu keiner Reihe.
-      Gewinn: Verdreifachung deines Einsatzes (3 ×).
-
-      Dutzend (1.–12., 13.–24. oder 25.–36.)
-      Du wählst eines der drei Dutzende aus.
-      Die “0” führt zum Verlust.
-      Gewinn: Verdreifachung deines Einsatzes (3 ×).
-
-      Einzelzahl (Straight Up)
-      Du wettest auf genau eine Zahl (1–36).
-      Trifft genau deine Zahl, gewinnst du das 36-Fache deines Einsatzes.
-
-      """;
     System.out.println(istr);
-    // increase time when pushed to main
-    pm(1000);
+    pm(1000);     // increase time when pushed to main
     System.out.println(CLAER);
   }
 
+    public static void anim(int antagonist) {
+        int i = 0;
+        String texture1 = "   ";                    
+        String texture2 = "" + WHITE_BACKGROUND + " o " + RESET + "";
+        while (i <= (antagonist + 111)) {
+            String[] slots = new String[37];
+            int target = i % 37;
+
+            for (int idx = 0; idx < 37; idx++) {
+                slots[idx] = (idx == target)
+                 ? texture2
+                 : texture1;
+            }
+            System.out.println("                                 ________________________________                       ");
+            System.out.println("                               /      " + slots[36] + RED_BACKGROUND + " 36 "    + RESET + "    " + GREEN_BACKGROUND + " 0 " + RESET + slots[0] + "  " + RED_BACKGROUND + " 1 "    + RESET + slots[1] + "   \\                      ");
+            System.out.println("                            / " + slots[35] + BLACK_BACKGROUND + " 35 " + RESET    + "                           " + BLACK_BACKGROUND + " 2 " + RESET + slots[2]    + " \\                    ");
+            System.out.println("                        /  " + slots[34] + RED_BACKGROUND + " 34 " + RESET    + "                                 " + RED_BACKGROUND + " 3 " + RESET + slots[3]    + "  \\                  ");
+            System.out.println("                    /   " + slots[33] + BLACK_BACKGROUND + " 33 " + RESET    + "                                       " + BLACK_BACKGROUND + " 4 " + RESET + slots[4]    + "  \\               ");
+            System.out.println("                   /   " + slots[32] + RED_BACKGROUND + " 32 " + RESET    + "                                         " + RED_BACKGROUND + " 5 " + RESET + slots[5]    + "   \\             ");
+            System.out.println("                /   " + slots[31] + BLACK_BACKGROUND + " 31 " + RESET    + "                                              " + BLACK_BACKGROUND + " 6 " + RESET    + slots[6] + "  \\            ");
+            System.out.println("               /  " + slots[30] + RED_BACKGROUND + " 30 " + RESET    + "                                                 " + RED_BACKGROUND + " 7 " + RESET    + slots[7] + "  \\           ");
+            System.out.println("              /  " + slots[29] + BLACK_BACKGROUND + " 29 " + RESET    + "                                                   " + BLACK_BACKGROUND + " 8 " + RESET    + slots[8] + "  \\          ");
+            System.out.println("              |  " + slots[28] + BLACK_BACKGROUND + " 28 " + RESET    + "                                                   " + RED_BACKGROUND + " 9 " + RESET    + slots[9] + "  |           ");
+            System.out.println("              \\  " + slots[27] + RED_BACKGROUND + " 27 " + RESET    + "                                                  " + BLACK_BACKGROUND + " 10 " + RESET    + slots[10] + " /           ");
+            System.out.println("               \\  " + slots[26] + BLACK_BACKGROUND + " 26 " + RESET    + "                                                " + BLACK_BACKGROUND + " 11 " + RESET    + slots[11] + " /            ");
+            System.out.println("                \\  " + slots[25] + RED_BACKGROUND + " 25 " + RESET    + "                                              " + RED_BACKGROUND + " 12 " + RESET    + slots[12] + " /             ");
+            System.out.println("                  \\  " + slots[24] + BLACK_BACKGROUND + " 24 " + RESET    + "                                          " + BLACK_BACKGROUND + " 13 " + RESET + slots[13]    + " /               ");
+            System.out.println("                   \\  " + slots[23] + RED_BACKGROUND + " 23 " + RESET    + "                                        " + RED_BACKGROUND + " 14 " + RESET + slots[14]    + " /                ");
+            System.out.println("                      \\  " + slots[22] + BLACK_BACKGROUND + " 22 " + RESET    + "                                  " + BLACK_BACKGROUND + " 15 " + RESET + slots[15]    + "  /                  ");
+            System.out.println("                          \\ " + slots[21] + RED_BACKGROUND + " 21 " + RESET    + "                            " + RED_BACKGROUND + " 16 " + RESET + slots[16]    + "  /                     ");
+            System.out.println("                             \\  " + slots[20] + BLACK_BACKGROUND + " 20 "    + RESET + "                     " + BLACK_BACKGROUND + " 17 " + RESET + slots[17]    + " /                         ");
+            System.out.println("                                    \\   " + slots[19] + RED_BACKGROUND + " 19 "    + RESET + "     " + RED_BACKGROUND + " 18 " + RESET + slots[18]    + "       /                           ");
+            System.out.println("                                     -----------------------------             "                   + "                "); // 20
+            i++;
+            pm(25); 
+        }
+    }
+  
   // returns the multiplier
   public static int checker(String[] x, int rnum) {
     String ucc = x[0];
@@ -264,8 +299,8 @@ public class Roulette {
   public static void main(String args[]) {
     start();
     int rnum = rand();
-
     multiplyer = checker(userinput(), rnum);
+    anim(rnum);
     worl(multiplyer);
 
     if (umoney == 0) {
