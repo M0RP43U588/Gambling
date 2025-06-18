@@ -28,6 +28,7 @@ public class hs {
       File hsf = new File("hs.txt");
       Scanner scnr = new Scanner(hsf);
       h = scnr.nextInt();
+      scnr.close();
     } catch (FileNotFoundException e) {
       w(0);
       h = 0;

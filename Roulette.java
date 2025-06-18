@@ -1,12 +1,11 @@
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Arrays;
-import java.util.List;
 import java.io.IOException;
 import java.lang.Thread;
 
 public class Roulette {
-  public static final double VERSION=0.40;
+  public static final double VERSION=0.44;
   // constants for text manipulation in terminal
   public static final String RESET = "\033[0m";
   public static final String BOLD = "\033[1m";
@@ -49,6 +48,7 @@ public class Roulette {
   public static final String[] AC               = { "erste 12", "zweite 12", "dritte 12", "1-18", "gerade", "rot", "schwarz", "ungerade", "19-36", "z"};
 
   // start money
+  public static int z = 0;
   public static int umoney = 1000;
 
   public static int highscore = 0;
@@ -58,18 +58,21 @@ public class Roulette {
   static Scanner scnr = new Scanner(System.in);
 
   public static void start() {
-    hs.r();
-    System.out.printf("Roulette version: %.02f\n", VERSION);
-    System.out.println("/--------------------------\\");
-    System.out.println("|   Type \"go\" to start     | ");
-    System.out.println("|--------------------------|");
-    System.out.println("|  Type \"info\" for into    | ");
-    System.out.println("\\--------------------------/ ");
-
-    // get user answer
-    String stansw = scnr.nextLine();
-    if (stansw.toLowerCase().equals("info")) {
-      info();
+    if (z == 0) {
+      z++;
+      highscore = hs.r();
+      System.out.printf("Roulette version: %.02f\n", VERSION);
+      System.out.println("/--------------------------\\");
+      System.out.println("|   Type \"go\" to start     | ");
+      System.out.println("|--------------------------|");
+      System.out.println("|  Type \"info\" for into    | ");
+      System.out.println("\\--------------------------/ ");
+  
+      // get user answer
+      String stansw = scnr.nextLine();
+      if (stansw.toLowerCase().equals("info")) {
+        info();
+      }
     }
   }
 
@@ -114,7 +117,7 @@ public class Roulette {
     }
 
     // get amount
-    System.out.println("Wieviel möchtest du einsetzen?");
+    System.out.println("Wieviel möchten sie einsetzen?");
     do {
       while (!scnr.hasNextInt()) {
         System.out.println("Bitte geben sie eine Gültige Zahl an, ihr Kontostand beträgt " + umoney);
@@ -180,15 +183,14 @@ public class Roulette {
     // write highscore
     hs.w(highscore);
     // close scanner
-    scnr.close();
     return 0;
   }
-
+  
   // returns the multiplier
   public static int checker(String[] x, int rnum) {
     String ucc = x[0];
     int arr[] = {0};
-
+    
     try {
       Integer.parseInt(ucc);
       if (rnum == Integer.valueOf(ucc)) {
@@ -211,27 +213,29 @@ public class Roulette {
     else if (ucc.equals("zweite 12")) {arr = SECONDTWELVE;}
     else if (ucc.equals("dritte 12")) {arr = THIRDTWELVE;}
     else {System.out.println("impossible");}
-
-
+    
     // iterate over array
     for (int i : arr) {
       if (i == rnum) {
         if (arr == REDNUMS || arr == BLACKNUMS || arr == ONE2EIGHTEEN || arr == NINETEEN2THIRTYSIX) {multiplyer = 1;} else {multiplyer = 2;}
       }
     }
-
+    
     return multiplyer;
   }
-
+  
   public static void worl(int m) {
     if (m == 0) {
-    System.out.println("Sie haben ihre Wette " + RED + "verloren" + RESET + " :/ ");
+      System.out.println("Sie haben ihre Wette " + RED + "verloren" + RESET + " :/ ");
+      umoney = (umoney - (Integer.valueOf(uir[1])));
     } else {
       System.out.println("Sie haben + " + (Integer.valueOf(uir[1]) * multiplyer) + GREEN + " gewonnen" + RESET + " \\^o^/");
-      umoney = Integer.valueOf(uir[1]) * multiplyer;
+      umoney = (umoney + (Integer.valueOf(uir[1]) * multiplyer));
       if (umoney > highscore) {highscore = umoney;}
     }
   }
+      //          System.out.println("Ihr Score ist: " + YELLOW + score+ RESET + ", ihre Session-Highscore ist: "+ PURPLE + highscore + RESET +  ", der Gesamt-Highscore ist: " + CYAN + highscoreFromFile + RESET);
+    //            System.out.println(YELLOW+"Sie haben eine neue Gesamt-Highscore gesetzt, gut gemacht!"+RESET); 
   // main function
   public static void main(String args[]) {
     start();
@@ -239,5 +243,25 @@ public class Roulette {
     multiplyer = checker(userinput(), rnum);
     worl(multiplyer);
     xit();
+    if (umoney == 0) {
+      exit();
+    }
+    main(args);
+    scnr.close();
   }
-} 
+  public static void exit() {
+    System.out.println("/----------------------------------------------------\\");        
+    System.out.println("|Geben sie an ob sie weiter spielen wollen: ('j'/'n')|");
+    System.out.println("\\---------------------------------------------------/");
+    String ei = scnr.nextLine();
+    if (ei.contains("j")) {
+      umoney = 1000;
+      main(null);}
+      else if (ei.contains("n")) {
+        System.out.println("/----------------------------------------------------\\");        
+        System.out.println("|           Sie haben "+z+" mal gespielt!              |");
+        System.out.println("\\---------------------------------------------------/");
+        System.exit(0);
+      }
+    }
+  }
