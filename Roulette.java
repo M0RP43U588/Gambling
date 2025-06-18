@@ -89,7 +89,9 @@ public class Roulette {
   public static String uc;
   public static int  ucs2;
   public static int uba;
+
   public static String[] userinput() {
+    System.out.println(CLAER);
     System.out.println("-------------------------|" + GREEN_BACKGROUND + " 0 " + RESET + "|----------------------------");
     System.out.println("|" + RED_BACKGROUND + " 3 " + RESET + "|" + BLACK_BACKGROUND + " 6 " + RESET + "|"+ RED_BACKGROUND + " 9 " + RESET + "|" + RED_BACKGROUND + " 12 " + RESET + "|" + BLACK_BACKGROUND+ " 15 " + RESET + "|" + RED_BACKGROUND + " 18 " + RESET + "|" + RED_BACKGROUND + " 21 " + RESET + "|"+ BLACK_BACKGROUND + " 24 " + RESET + "|" + RED_BACKGROUND + " 27 " + RESET + "|" + RED_BACKGROUND+ " 30 " + RESET + "|" + BLACK_BACKGROUND + " 33 " + RESET + "|" + RED_BACKGROUND + " 36 " + RESET+ "| <- Reihe 3");
     System.out.println("|" + BLACK_BACKGROUND + " 2 " + RESET + "|" + RED_BACKGROUND + " 5 " + RESET + "|"+ BLACK_BACKGROUND + " 8 " + RESET + "|" + BLACK_BACKGROUND + " 11 " + RESET + "|" + RED_BACKGROUND+ " 14 " + RESET + "|" + BLACK_BACKGROUND + " 17 " + RESET + "|" + BLACK_BACKGROUND + " 20 " + RESET+ "|" + RED_BACKGROUND + " 23 " + RESET + "|" + BLACK_BACKGROUND + " 26 " + RESET + "|"+ BLACK_BACKGROUND + " 29 " + RESET + "|" + RED_BACKGROUND + " 32 " + RESET + "|" + BLACK_BACKGROUND+ " 35 " + RESET + "| <- Reihe 2");
@@ -107,19 +109,19 @@ public class Roulette {
     // get target
     do {
       uc = scnr.nextLine().toLowerCase(); 
-      if (!(Arrays.asList(AC).contains(uc))) {System.out.println(uc + " ist ungültig");}
+      if (!(Arrays.asList(AC).contains(uc))) {System.out.println(uc + " ist ungültig, versuchen Sie es noch ein");}
     } while (!(Arrays.asList(AC).contains(uc)));
 
     // get exact num if target == z
     if (uc.equals("z")) { 
       do {
-        System.out.println("Geben sie eine Zahl zwischen 1 - 36 ein."); 
+        System.out.print("Geben sie eine Zahl zwischen 1 - 36 ein: "); 
         while (!scnr.hasNextInt()) {
-          System.out.println("Bitte geben sie eine Zahl ein");
+          System.out.print("Bitte geben sie eine Zahl ein": );
           scnr.next();
         }
         ucs2 = scnr.nextInt(); 
-      } while (ucs2 > 1 && ucs2 > 36);
+      } while (ucs2 < 0 || ucs2 > 36);
       uir[0] = String.valueOf(ucs2);
     } else {
       uir[0] =uc;
@@ -134,6 +136,7 @@ public class Roulette {
       }
       uba = scnr.nextInt();
     } while (uba > umoney || uba < 1);
+    scnr.nextLine();
     // append to array and return
     uir[1] = String.valueOf(uba);
     return uir;
@@ -237,6 +240,26 @@ public class Roulette {
   }
   //          System.out.println("Ihr Score ist: " + YELLOW + score+ RESET + ", ihre Session-Highscore ist: "+ PURPLE + highscore + RESET +  ", der Gesamt-Highscore ist: " + CYAN + highscoreFromFile + RESET);
   //            System.out.println(YELLOW+"Sie haben eine neue Gesamt-Highscore gesetzt, gut gemacht!"+RESET); 
+  public static int xit() {
+    System.out.println("/----------------------------------------------------\\");        
+    System.out.println("|Geben sie an ob sie weiter spielen wollen: ('j'/'n')|");
+    System.out.println("\\---------------------------------------------------/");
+
+    String string = scnr.nextLine();
+    if (! string.equalsIgnoreCase("j")) {
+    System.out.println("/----------------------------------------------------\\");        
+    System.out.println("|           Sie haben "+z+" mal gespielt!              |");
+    System.out.println("\\---------------------------------------------------/");
+    hs.w(highscore);
+    return 0;
+    } else {
+      hs.w(highscore);
+      umoney = 1000;
+      main(null);
+      return 0;
+    }
+  }
+
   // main function
   public static void main(String args[]) {
     start();
@@ -244,31 +267,9 @@ public class Roulette {
 
     multiplyer = checker(userinput(), rnum);
     worl(multiplyer);
+
     if (umoney == 0) {
-      exit();
+      xit();
     }
-    main(args);
-  }
-  public static int exit() {
-    System.out.println("/----------------------------------------------------\\");        
-    System.out.println("|Geben sie an ob sie weiter spielen wollen: ('j'/'n')|");
-    System.out.println("\\---------------------------------------------------/");
-    String ei = scnr.nextLine();
-    if (ei.contains("j")) {
-      umoney = 1000;
-      main(null);}
-    else if (ei.contains("n")) {
-      System.out.println("/----------------------------------------------------\\");        
-      System.out.println("|           Sie haben "+z+" mal gespielt!              |");
-      System.out.println("\\---------------------------------------------------/");
-      // write highscore
-      hs.w(highscore);
-      // scemmer
-      scnr.close();
-      // close scanner
-      System.exit(0);
-      return 0;
-    }
-    return 0;
   }
 }
