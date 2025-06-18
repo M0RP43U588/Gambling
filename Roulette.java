@@ -179,11 +179,6 @@ public class Roulette {
     System.out.println(CLAER);
   }
 
-  // returns the multiplier
-  public static int checker(String[] x, int rnum) {
-    String ucc = x[0];
-    int arr[] = {0};
-
     try {
       Integer.parseInt(ucc);
       if (rnum == Integer.valueOf(ucc)) {
