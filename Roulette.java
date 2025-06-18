@@ -76,6 +76,15 @@ public class Roulette {
     }
   }
 
+  public static void pm(int ms) {
+    try {
+      Thread.sleep(ms);
+    }
+    catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+
   public static String[] uir = new String[2];
   public static String uc;
   public static int  ucs2;
@@ -174,7 +183,7 @@ public class Roulette {
         """;
     System.out.println(istr);
     // increase time when pushed to main
-    try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
+    pm(1000);
     System.out.println(CLAER);
   }
 
@@ -240,6 +249,7 @@ public class Roulette {
   public static void main(String args[]) {
     start();
     int rnum = rand();
+
     multiplyer = checker(userinput(), rnum);
     worl(multiplyer);
     xit();
