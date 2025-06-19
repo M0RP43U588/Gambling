@@ -166,7 +166,7 @@ public class Roulette {
     System.out.print("Wieviel möchten sie einsetzen? ");
     do { // get amount user wants to bet
       while (!scnr.hasNextInt()) {
-        System.out.println("Bitte geben sie eine Gültige Zahl an: ");
+        System.out.print("Bitte geben sie eine Gültige Zahl an: ");
         scnr.next();
       }
       if (uba > umoney || uba < 1) {
@@ -174,7 +174,6 @@ public class Roulette {
       }
       uba = scnr.nextInt();
     } while (uba > umoney || uba < 1);
-    scnr.nextLine();
     uir[1] = String.valueOf(uba); // insert into array
     return uir;
   }
@@ -350,6 +349,7 @@ public class Roulette {
     worl(multiplyer);
     pm(2000);
     if (umoney == 0) {
+      scnr.nextLine();
       xit();
     } else {
       main(null);
