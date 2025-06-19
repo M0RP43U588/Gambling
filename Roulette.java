@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.lang.Thread;
 
 public class Roulette {
-  static final double VERSION=0.52;
+  static final double VERSION=1.00;
   // constants for text manipulation in terminal
   static final String RESET = "\033[0m";
   static final String BOLD = "\033[1m";
@@ -89,7 +89,7 @@ public class Roulette {
   // create scanner object
   static Scanner scnr = new Scanner(System.in);
 
-  static void start() {
+  static void start() { // method where it all starts
     if (z == 0) {
       claer();
       z++;
@@ -109,7 +109,7 @@ public class Roulette {
     }
   }
 
-  static void pm(int ms) {
+  static void pm(int ms) { // delay method that takes ms
     try {
       Thread.sleep(ms);
     }
@@ -123,7 +123,7 @@ public class Roulette {
   static int  ucs2;
   static int uba;
 
-  static String[] userinput() {
+  static String[] userinput() { // method that gets the betting target and amount of the user
     claer();
     System.out.println("-------------------------|" + GREEN_BACKGROUND + " 0 " + RESET + "|----------------------------");
     System.out.println("|" + RED_BACKGROUND + " 3 " + RESET + "|" + BLACK_BACKGROUND + " 6 " + RESET + "|"+ RED_BACKGROUND + " 9 " + RESET + "|" + RED_BACKGROUND + " 12 " + RESET + "|" + BLACK_BACKGROUND+ " 15 " + RESET + "|" + RED_BACKGROUND + " 18 " + RESET + "|" + RED_BACKGROUND + " 21 " + RESET + "|"+ BLACK_BACKGROUND + " 24 " + RESET + "|" + RED_BACKGROUND + " 27 " + RESET + "|" + RED_BACKGROUND+ " 30 " + RESET + "|" + BLACK_BACKGROUND + " 33 " + RESET + "|" + RED_BACKGROUND + " 36 " + RESET+ "| <- Reihe 3");
@@ -139,14 +139,12 @@ public class Roulette {
     System.out.println("Sie haben " + YELLOW + umoney + " CHF" + RESET);
     System.out.println("Auf was wollen Sie Wetten? ");
 
-    // get target
-    do {
+    do { // get user target
       uc = scnr.nextLine().toLowerCase(); 
       if (!(Arrays.asList(AC).contains(uc))) {System.out.print(uc + " ist ungültig, versuchen Sie es noch einmal: ");}
     } while (!(Arrays.asList(AC).contains(uc)));
 
-    // get exact num if target == z
-    if (uc.equals("z")) { 
+    if (uc.equals("z")) { // get exact number if the target is z
       do {
         System.out.print("Geben sie eine Zahl zwischen 0 - 36 ein: "); 
         while (!scnr.hasNextInt()) {
@@ -160,9 +158,8 @@ public class Roulette {
       uir[0] =uc;
     }
 
-    // get amount
     System.out.print("Wieviel möchten sie einsetzen? ");
-    do {
+    do { // get amount user wants to bet
       while (!scnr.hasNextInt()) {
         System.out.println("Bitte geben sie eine Gültige Zahl an: ");
         scnr.next();
@@ -173,19 +170,16 @@ public class Roulette {
       uba = scnr.nextInt();
     } while (uba > umoney || uba < 1);
     scnr.nextLine();
-    // append to array and return
-    uir[1] = String.valueOf(uba);
+    uir[1] = String.valueOf(uba); // insert into array
     return uir;
   }
 
-  // random int function
-  static int rand() {
+  static int rand() { // method that generates a random integer
     Random randint = new Random();
     return randint.nextInt(0, 37);
   }
 
-  // information function
-  static void info() {
+  static void info() { // method that prints information
     claer();
     System.out.println(istr);
     System.out.println("/----------------------------------------------------\\");
@@ -199,11 +193,11 @@ public class Roulette {
     }
   }
 
-  static void claer() {
+  static void claer() { // method that clears terminal screen using the CLAER constant
     System.out.println(CLAER);
   }
 
-    static void anim(int antagonist) {
+    static void anim(int antagonist) { // animation powered by ansi codes
         int i = 0;
         String texture1 = "   ";                    
         String texture2 = "" + WHITE_BACKGROUND + " o " + RESET + "";
@@ -242,8 +236,7 @@ public class Roulette {
         }
     }
   
-  // returns the multiplier
-  static int checker(String[] x, int rnum) {
+  static int checker(String[] x, int rnum) { // returns the multiplyer
     String ucc = x[0];
     int arr[] = {0};
     multiplyer = 0;
@@ -252,15 +245,14 @@ public class Roulette {
       Integer.parseInt(ucc);
       if (rnum == Integer.valueOf(ucc)) {
         return 36;
-      } else {return 0;}
-      // System.out.println(ucc + " is a number");
-    }
-    catch (NumberFormatException e) {
-      // System.out.println(ucc + " is NOT a number");
+      } else {
+        return 0;
+      }
+    } catch (NumberFormatException e) {
+      e.printStackTrace();
     }
 
-    //  optimization switch > if else
-    switch (ucc) {
+    switch (ucc) { // optimized switch statement
       case "gerade":
         if (rnum % 2 == 0) return 1;
         else return 0;
@@ -289,12 +281,11 @@ public class Roulette {
         arr = THIRDTWELVE;
         break;
       default:
-        System.out.println("hacker");
+        System.out.println("hacker"); // this case is impossible to reach under normal circustances
         break;
     }
 
-    // iterate over array
-    for (int i : arr) {
+    for (int i : arr) { // iterate over array
       if (i == rnum) {
         if (arr == REDNUMS || arr == BLACKNUMS || arr == ONE2EIGHTEEN || arr == NINETEEN2THIRTYSIX) {multiplyer = 1;} else {multiplyer = 2;}
       }
@@ -303,7 +294,7 @@ public class Roulette {
     return multiplyer;
   }
 
-  static void worl(int m) {
+  static void worl(int m) { // method that carries out the win or loose actions
     if (m == 0) {
       System.out.println("Sie haben ihre Wette " + RED + "verloren" + RESET + " :/ ");
       umoney = (umoney - (Integer.valueOf(uir[1])));
@@ -315,7 +306,8 @@ public class Roulette {
       }
     }
   }
-  static int xit() {
+
+  static int xit() { // method for end of round and termination of program
     System.out.println("/----------------------------------------------------\\");        
     System.out.println("|Geben sie an ob sie weiter spielen wollen: ('j'/'n')|");
     System.out.println("\\---------------------------------------------------/");
@@ -335,8 +327,7 @@ public class Roulette {
     }
   }
 
-  // main function
-  public static void main(String args[]) {
+  public static void main(String args[]) { // main method
     start();
     int rnum = rand();
     multiplyer = checker(userinput(), rnum);
