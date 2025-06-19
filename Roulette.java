@@ -246,6 +246,7 @@ public class Roulette {
   static int checker(String[] x, int rnum) {
     String ucc = x[0];
     int arr[] = {0};
+    multiplyer = 0;
 
     try {
       Integer.parseInt(ucc);
