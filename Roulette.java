@@ -107,7 +107,7 @@ public class Roulette {
       System.out.println("\\--------------------------/ ");
 
       // get user answer
-      String stansw = scnr.nextLine();
+      String stansw = scnr.nextLine().trim();
       if (stansw.toLowerCase().equals("info")) {
         info();
       }
@@ -145,7 +145,7 @@ public class Roulette {
     System.out.println("Auf was wollen Sie Wetten? ");
 
     do { // get user target
-      uc = scnr.nextLine().toLowerCase(); 
+      uc = scnr.nextLine().trim().toLowerCase(); 
       if (!(Arrays.asList(AC).contains(uc))) {System.out.print(uc + " ist ungültig, versuchen Sie es noch einmal: ");}
     } while (!(Arrays.asList(AC).contains(uc)));
 
@@ -189,7 +189,7 @@ public class Roulette {
     System.out.println("/----------------------------------------------------\\");
     System.out.println("|                Sind sie bereit?: ('j')             |");
     System.out.println("\\---------------------------------------------------/");
-    if (scnr.nextLine().trim().toLowerCase().contentEquals("j")) {
+    if (scnr.nextLine().trim().trim().toLowerCase().contentEquals("j")) {
       start();
     }
     else {
@@ -325,7 +325,7 @@ public class Roulette {
     System.out.println("|Geben sie an ob sie weiter spielen wollen: ('j'/'n')|");
     System.out.println("\\---------------------------------------------------/");
 
-    String string = scnr.nextLine();
+    String string = scnr.nextLine().trim();
     if (! string.equalsIgnoreCase("j")) {
     System.out.println("/----------------------------------------------------\\");        
     System.out.println("|           Sie haben "+z+" mal gespielt!              |");
@@ -349,9 +349,10 @@ public class Roulette {
     worl(multiplyer);
     pm(2000);
     if (umoney == 0) {
-      scnr.nextLine();
+      scnr.nextLine().trim();
       xit();
     } else {
+      scnr.nextLine().trim();
       main(null);
     }
   }
