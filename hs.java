@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class hs {
-  public static void w(int hs) {
+  static void w(int hs) {
     try {
       File hsf = new File("hs.txt");
       hsf.createNewFile();
@@ -22,7 +22,7 @@ public class hs {
     }
   }
 
-  public static int r() {
+  static int r() {
     int h;
     try {
       File hsf = new File("hs.txt");

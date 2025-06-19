@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.lang.Thread;
 
 public class Roulette {
-  static final double VERSION=0.52;
+  static final double VERSION=0.69;
   // constants for text manipulation in terminal
   static final String RESET = "\033[0m";
   static final String BOLD = "\033[1m";
@@ -106,7 +106,7 @@ Rot oder Schwarz
       System.out.println("\\--------------------------/ ");
 
       // get user answer
-      String stansw = scnr.nextLine();
+      String stansw = scnr.nextLine().trim();
       if (stansw.toLowerCase().equals("info")) {
         info();
       }
@@ -179,7 +179,6 @@ Rot oder Schwarz
       }
 
     } while (uba > umoney || uba < 1);
-    scnr.nextLine();
     // append to array and return
     uir[1] = String.valueOf(uba);
     return uir;
@@ -198,7 +197,7 @@ Rot oder Schwarz
     System.out.println("/----------------------------------------------------\\");
     System.out.println("|                Sind sie bereit?: ('j')             |");
     System.out.println("\\---------------------------------------------------/");
-    if (scnr.nextLine().trim().toLowerCase().contentEquals("j")) {
+    if (scnr.nextLine().trim().trim().toLowerCase().contentEquals("j")) {
       start();
     }
     else {
@@ -336,7 +335,7 @@ Rot oder Schwarz
     System.out.println("|Geben sie an ob sie weiter spielen wollen: ('j'/'n')|");
     System.out.println("\\---------------------------------------------------/");
 
-    String string = scnr.nextLine();
+    String string = scnr.nextLine().trim();
     if (! string.equalsIgnoreCase("j")) {
     System.out.println("/----------------------------------------------------\\");        
     System.out.println("|           Sie haben "+z+" mal gespielt!              |");
@@ -361,8 +360,10 @@ Rot oder Schwarz
     worl(multiplyer);
     pm(2000);
     if (umoney == 0) {
+      scnr.nextLine().trim();
       xit();
     } else {
+      scnr.nextLine().trim();
       main(null);
     }
   }
