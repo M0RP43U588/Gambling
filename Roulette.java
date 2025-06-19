@@ -50,7 +50,7 @@ public class Roulette {
   static int z = 0;
   static int umoney = 1000;
 
-  static int highscore = 0;
+  public static int highscore = 0;
   static int multiplyer = 0;
   static String istr = """
   Rot oder Schwarz
