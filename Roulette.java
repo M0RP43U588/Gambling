@@ -164,7 +164,7 @@ public class Roulette {
     System.out.print("Wieviel möchten sie einsetzen? ");
     do {
       while (!scnr.hasNextInt()) {
-        System.out.println("Bitte geben sie eine Gültige Zahl an: ");
+        System.out.print("Bitte geben sie eine Gültige Zahl an: ");
         scnr.next();
       }
       if (uba > umoney || uba < 1) {
