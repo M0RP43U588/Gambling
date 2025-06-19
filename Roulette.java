@@ -4,55 +4,55 @@ import java.util.Arrays;
 import java.lang.Thread;
 
 public class Roulette {
-  public static final double VERSION=0.52;
+  static final double VERSION=0.52;
   // constants for text manipulation in terminal
-  public static final String RESET = "\033[0m";
-  public static final String BOLD = "\033[1m";
-  public static final String UNDERLINE = "\033[4m";
-  public static final String REVERSED = "\033[7m";
+  static final String RESET = "\033[0m";
+  static final String BOLD = "\033[1m";
+  static final String UNDERLINE = "\033[4m";
+  static final String REVERSED = "\033[7m";
 
-  public static final String BLACK = "\033[0;30m";
-  public static final String RED = "\033[0;31m";
-  public static final String GREEN = "\033[0;32m";
-  public static final String YELLOW = "\033[0;33m";
-  public static final String BLUE = "\033[0;34m";
-  public static final String PURPLE = "\033[0;35m";
-  public static final String CYAN = "\033[0;36m";
-  public static final String WHITE = "\033[0;37m";
+  static final String BLACK = "\033[0;30m";
+  static final String RED = "\033[0;31m";
+  static final String GREEN = "\033[0;32m";
+  static final String YELLOW = "\033[0;33m";
+  static final String BLUE = "\033[0;34m";
+  static final String PURPLE = "\033[0;35m";
+  static final String CYAN = "\033[0;36m";
+  static final String WHITE = "\033[0;37m";
 
-  public static final String BLACK_BACKGROUND = "\033[40m";
-  public static final String RED_BACKGROUND = "\033[41m";
-  public static final String GREEN_BACKGROUND = "\033[42m";
-  public static final String YELLOW_BACKGROUND = "\033[43m";
-  public static final String BLUE_BACKGROUND = "\033[44m";
-  public static final String PURPLE_BACKGROUND = "\033[45m";
-  public static final String CYAN_BACKGROUND = "\033[46m";
-  public static final String WHITE_BACKGROUND = "\033[47m";
+  static final String BLACK_BACKGROUND = "\033[40m";
+  static final String RED_BACKGROUND = "\033[41m";
+  static final String GREEN_BACKGROUND = "\033[42m";
+  static final String YELLOW_BACKGROUND = "\033[43m";
+  static final String BLUE_BACKGROUND = "\033[44m";
+  static final String PURPLE_BACKGROUND = "\033[45m";
+  static final String CYAN_BACKGROUND = "\033[46m";
+  static final String WHITE_BACKGROUND = "\033[47m";
 
-  public static final String CLAER = "\033[H\033[2J";
+  static final String CLAER = "\033[H\033[2J";
 
   // define arrays with numbers
-  public static final int[] REDNUMS             = { 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };
-  public static final int[] BLACKNUMS           = { 2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35 };
-  public static final int[] ODDNUMS             = { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35 };
-  public static final int[] EVENNUMS            = { 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36 };
-  public static final int[] FIRSTTWELVE         = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-  public static final int[] SECONDTWELVE        = { 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 };
-  public static final int[] THIRDTWELVE         = { 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 };
-  public static final int[] FIRSTCOL            = { 1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34 };
-  public static final int[] SECONDCOL           = { 2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35 };
-  public static final int[] THIRDCOL            = { 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36 };
-  public static final int[] ONE2EIGHTEEN        = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ,13, 14, 15, 16, 17, 18 };
-  public static final int[] NINETEEN2THIRTYSIX  = { 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 };
-  public static final String[] AC               = { "erste 12", "zweite 12", "dritte 12", "1-18", "gerade", "rot", "schwarz", "ungerade", "19-36", "z"};
+  static final int[] REDNUMS             = { 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };
+  static final int[] BLACKNUMS           = { 2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35 };
+  static final int[] ODDNUMS             = { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35 };
+  static final int[] EVENNUMS            = { 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36 };
+  static final int[] FIRSTTWELVE         = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+  static final int[] SECONDTWELVE        = { 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 };
+  static final int[] THIRDTWELVE         = { 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 };
+  static final int[] FIRSTCOL            = { 1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34 };
+  static final int[] SECONDCOL           = { 2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35 };
+  static final int[] THIRDCOL            = { 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36 };
+  static final int[] ONE2EIGHTEEN        = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ,13, 14, 15, 16, 17, 18 };
+  static final int[] NINETEEN2THIRTYSIX  = { 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 };
+  static final String[] AC               = { "erste 12", "zweite 12", "dritte 12", "1-18", "gerade", "rot", "schwarz", "ungerade", "19-36", "z"};
 
   // start money
-  public static int z = 0;
-  public static int umoney = 1000;
+  static int z = 0;
+  static int umoney = 1000;
 
-  public static int highscore = 0;
-  public static int multiplyer = 0;
-  public static String istr = """
+  static int highscore = 0;
+  static int multiplyer = 0;
+  static String istr = """
   Rot oder Schwarz
       Du wettest auf die Farbe der Zahl.
       Die “0” ist grün und bedeutet bei einer Farb­wette automatisch Verlust.
@@ -87,9 +87,9 @@ public class Roulette {
       """;
   
   // create scanner object
-  public static Scanner scnr = new Scanner(System.in);
+  static Scanner scnr = new Scanner(System.in);
 
-  public static void start() {
+  static void start() {
     if (z == 0) {
       claer();
       z++;
@@ -109,7 +109,7 @@ public class Roulette {
     }
   }
 
-  public static void pm(int ms) {
+  static void pm(int ms) {
     try {
       Thread.sleep(ms);
     }
@@ -118,12 +118,12 @@ public class Roulette {
     }
   }
 
-  public static String[] uir = new String[2];
-  public static String uc;
-  public static int  ucs2;
-  public static int uba;
+  static String[] uir = new String[2];
+  static String uc;
+  static int  ucs2;
+  static int uba;
 
-  public static String[] userinput() {
+  static String[] userinput() {
     claer();
     System.out.println("-------------------------|" + GREEN_BACKGROUND + " 0 " + RESET + "|----------------------------");
     System.out.println("|" + RED_BACKGROUND + " 3 " + RESET + "|" + BLACK_BACKGROUND + " 6 " + RESET + "|"+ RED_BACKGROUND + " 9 " + RESET + "|" + RED_BACKGROUND + " 12 " + RESET + "|" + BLACK_BACKGROUND+ " 15 " + RESET + "|" + RED_BACKGROUND + " 18 " + RESET + "|" + RED_BACKGROUND + " 21 " + RESET + "|"+ BLACK_BACKGROUND + " 24 " + RESET + "|" + RED_BACKGROUND + " 27 " + RESET + "|" + RED_BACKGROUND+ " 30 " + RESET + "|" + BLACK_BACKGROUND + " 33 " + RESET + "|" + RED_BACKGROUND + " 36 " + RESET+ "| <- Reihe 3");
@@ -148,7 +148,7 @@ public class Roulette {
     // get exact num if target == z
     if (uc.equals("z")) { 
       do {
-        System.out.print("Geben sie eine Zahl zwischen 1 - 36 ein: "); 
+        System.out.print("Geben sie eine Zahl zwischen 0 - 36 ein: "); 
         while (!scnr.hasNextInt()) {
           System.out.print("Bitte geben sie eine Zahl ein: ");
           scnr.next();
@@ -161,11 +161,14 @@ public class Roulette {
     }
 
     // get amount
-    System.out.println("Wieviel möchten sie einsetzen?");
+    System.out.print("Wieviel möchten sie einsetzen? ");
     do {
       while (!scnr.hasNextInt()) {
-        System.out.println("Bitte geben sie eine Gültige Zahl an, ihr Kontostand beträgt " + umoney);
+        System.out.println("Bitte geben sie eine Gültige Zahl an: ");
         scnr.next();
+      }
+      if (uba > umoney || uba < 1) {
+        System.out.print("Ihre eingabe ist zu hoch, Ihr Kontostand beträgt." + umoney + "Geben Sie einen gültigen Betrag ein: ");
       }
       uba = scnr.nextInt();
     } while (uba > umoney || uba < 1);
@@ -176,13 +179,13 @@ public class Roulette {
   }
 
   // random int function
-  public static int rand() {
+  static int rand() {
     Random randint = new Random();
     return randint.nextInt(0, 37);
   }
 
   // information function
-  public static void info() {
+  static void info() {
     claer();
     System.out.println(istr);
     System.out.println("/----------------------------------------------------\\");
@@ -196,11 +199,11 @@ public class Roulette {
     }
   }
 
-  public static void claer() {
+  static void claer() {
     System.out.println(CLAER);
   }
 
-    public static void anim(int antagonist) {
+    static void anim(int antagonist) {
         int i = 0;
         String texture1 = "   ";                    
         String texture2 = "" + WHITE_BACKGROUND + " o " + RESET + "";
@@ -240,7 +243,7 @@ public class Roulette {
     }
   
   // returns the multiplier
-  public static int checker(String[] x, int rnum) {
+  static int checker(String[] x, int rnum) {
     String ucc = x[0];
     int arr[] = {0};
 
@@ -299,7 +302,7 @@ public class Roulette {
     return multiplyer;
   }
 
-  public static void worl(int m) {
+  static void worl(int m) {
     if (m == 0) {
       System.out.println("Sie haben ihre Wette " + RED + "verloren" + RESET + " :/ ");
       umoney = (umoney - (Integer.valueOf(uir[1])));
@@ -311,7 +314,7 @@ public class Roulette {
       }
     }
   }
-  public static int xit() {
+  static int xit() {
     System.out.println("/----------------------------------------------------\\");        
     System.out.println("|Geben sie an ob sie weiter spielen wollen: ('j'/'n')|");
     System.out.println("\\---------------------------------------------------/");
