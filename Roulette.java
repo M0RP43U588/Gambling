@@ -103,7 +103,7 @@ public class Roulette {
       System.out.println("/--------------------------\\");
       System.out.println("|   Type \"go\" to start     | ");
       System.out.println("|--------------------------|");
-      System.out.println("|  Type \"info\" for into    | ");
+      System.out.println("|  Type \"info\" for info    | ");
       System.out.println("\\--------------------------/ ");
 
       // get user answer
@@ -135,25 +135,25 @@ public class Roulette {
     System.out.println("|" + BLACK_BACKGROUND + " 2 " + RESET + "|" + RED_BACKGROUND + " 5 " + RESET + "|"+ BLACK_BACKGROUND + " 8 " + RESET + "|" + BLACK_BACKGROUND + " 11 " + RESET + "|" + RED_BACKGROUND+ " 14 " + RESET + "|" + BLACK_BACKGROUND + " 17 " + RESET + "|" + BLACK_BACKGROUND + " 20 " + RESET+ "|" + RED_BACKGROUND + " 23 " + RESET + "|" + BLACK_BACKGROUND + " 26 " + RESET + "|"+ BLACK_BACKGROUND + " 29 " + RESET + "|" + RED_BACKGROUND + " 32 " + RESET + "|" + BLACK_BACKGROUND+ " 35 " + RESET + "| <- Reihe 2");
     System.out.println("|" + RED_BACKGROUND + " 1 " + RESET + "|" + BLACK_BACKGROUND + " 4 " + RESET + "|"+ RED_BACKGROUND + " 7 " + RESET + "|" + BLACK_BACKGROUND + " 10 " + RESET + "|" + BLACK_BACKGROUND+ " 13 " + RESET + "|" + RED_BACKGROUND + " 16 " + RESET + "|" + RED_BACKGROUND + " 19 " + RESET + "|"+ BLACK_BACKGROUND + " 22 " + RESET + "|" + RED_BACKGROUND + " 25 " + RESET + "|" + BLACK_BACKGROUND+ " 28 " + RESET + "|" + BLACK_BACKGROUND + " 31 " + RESET + "|" + RED_BACKGROUND + " 34 " + RESET+ "| <- Reihe 1");
     System.out.println("----------------------------------------------------------");
-    System.out.println("|    Erste 12    |     Zweite 12     |     Dritte 12     |");
+    System.out.println("|     First 12    |     Second 12     |     Third 12     |");
     System.out.println("----------------------------------------------------------");
-    System.out.println("| 1-18  | Gerade |" + RED_BACKGROUND + "   Rot   " + RESET + "|" + BLACK_BACKGROUND+ " Schwarz " + RESET + "|Ungerade|   19-36  |");
+    System.out.println("| 1-18  |   Even  |" + RED_BACKGROUND + "   Red   " + RESET + "|" + BLACK_BACKGROUND+ " Black " + RESET + "|   Odd   |   19-36  |");
     System.out.println("----------------------------------------------------------");
-    System.out.println("|                   Belibige Zahl ('z')                  |");
+    System.out.println("|                  Specific number ('z')                 |");
     System.out.println("----------------------------------------------------------");
     System.out.println("Sie haben " + YELLOW + umoney + " CHF" + RESET);
     System.out.println("Auf was wollen Sie Wetten? ");
 
     do { // get user target
       uc = scnr.nextLine().trim().toLowerCase(); 
-      if (!(Arrays.asList(AC).contains(uc))) {System.out.print(uc + " ist ungültig, versuchen Sie es noch einmal: ");}
+      if (!(Arrays.asList(AC).contains(uc))) {System.out.print(uc + "is invalid, try again: ");}
     } while (!(Arrays.asList(AC).contains(uc)));
 
     if (uc.equals("z")) { // get exact number if the target is z
       do {
-        System.out.print("Geben sie eine Zahl zwischen 0 - 36 ein: "); 
+        System.out.print("Enter a number from 0-36: "); 
         while (!scnr.hasNextInt()) {
-          System.out.print("Bitte geben sie eine Zahl ein: ");
+          System.out.print("Please enter a number: ");
           scnr.next();
         }
         ucs2 = scnr.nextInt(); 
@@ -163,14 +163,14 @@ public class Roulette {
       uir[0] =uc;
     }
 
-    System.out.print("Wieviel möchten sie einsetzen? ");
+    System.out.print("How much do you want to bet: ");
     do { // get amount user wants to bet
       while (!scnr.hasNextInt()) {
-        System.out.print("Bitte geben sie eine Gültige Zahl an: ");
+        System.out.print("Please enter a valid number: ");
         scnr.next();
       }
       if (uba > umoney || uba < 1) {
-        System.out.print("Ihre eingabe ist zu hoch, Ihr Kontostand beträgt." + umoney + "Geben Sie einen gültigen Betrag ein: ");
+        System.out.print("Your bet is too high. " + umoney + "is your current balance, try again: ");
       }
       uba = scnr.nextInt();
     } while (uba > umoney || uba < 1);
@@ -187,9 +187,9 @@ public class Roulette {
     claer();
     System.out.println(istr);
     System.out.println("/----------------------------------------------------\\");
-    System.out.println("|                Sind sie bereit?: ('j')             |");
+    System.out.println("|                Are you Ready?: ('y')               |");
     System.out.println("\\---------------------------------------------------/");
-    if (scnr.nextLine().trim().trim().toLowerCase().contentEquals("j")) {
+    if (scnr.nextLine().trim().trim().toLowerCase().contentEquals("y")) {
       start();
     }
     else {
@@ -309,26 +309,26 @@ public class Roulette {
 
   static void worl(int m) { // method that carries out the win or loose actions
     if (m == 0) {
-      System.out.println("Sie haben ihre Wette " + RED + "verloren" + RESET + " :/ ");
+      System.out.println("You have... " + RED + "lost" + RESET + " :/ ");
       umoney = (umoney - (Integer.valueOf(uir[1])));
     } else {
-      System.out.println("Sie haben + " + (Integer.valueOf(uir[1]) * multiplyer) + GREEN + " gewonnen" + RESET + " \\^o^/");
+      System.out.println("You have won: + " + (Integer.valueOf(uir[1]) * multiplyer) + GREEN + " \\^o^/" + RESET);
       umoney = (umoney + (Integer.valueOf(uir[1]) * multiplyer));
       if (umoney > highscore) {highscore = umoney;
-      System.out.println("Ihr Score ist: " + YELLOW + umoney + RESET + GREEN+" Sie haben eine neue Gesamt-Highscore gesetzt, gut gemacht!"+RESET);
+      System.out.println("Your score is: " + YELLOW + umoney + RESET + GREEN+"You beat the highscore, good job"+RESET);
       }
     }
   }
 
   static int xit() { // method for end of round and termination of program
     System.out.println("/----------------------------------------------------\\");        
-    System.out.println("|Geben sie an ob sie weiter spielen wollen: ('j'/'n')|");
+    System.out.println("|          Do you want to play again? (y/N)           |");
     System.out.println("\\---------------------------------------------------/");
 
     String string = scnr.nextLine().trim();
     if (! string.equalsIgnoreCase("j")) {
     System.out.println("/----------------------------------------------------\\");        
-    System.out.println("|           Sie haben "+z+" mal gespielt!              |");
+    System.out.println("|               You played " +z+ " times              |");
     System.out.println("\\---------------------------------------------------/");
     hs.w(highscore);
     return 0;
