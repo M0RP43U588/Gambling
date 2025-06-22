@@ -1,6 +1,9 @@
 # hs file
 hs.txt
 
+# special file
+comp.sh
+
 # Compiled class file
 *.class
 
