@@ -1,2 +1,2 @@
 # Todo
-- [ ] Translate everything into english
+- [x] Translate everything into english
