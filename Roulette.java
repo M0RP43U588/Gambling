@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.lang.Thread;
 
 public class Roulette {
-  static final double VERSION=1.00;
+  static final double VERSION=1.10;
   // constants for text manipulation in terminal
   static final String RESET = "\033[0m";
   static final String BOLD = "\033[1m";
