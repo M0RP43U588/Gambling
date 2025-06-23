@@ -53,36 +53,36 @@ public class Roulette {
   public static int highscore = 0;
   static int multiplyer = 0;
   static String istr = """
-    Red or Black
-    You bet on the color of the number.
-    The "0" is green and automatically means a loss for a color bet.
-    Win: Double your stake (payout 2 ×).
+Rot oder Schwarz
+      Du wettest auf die Farbe der Zahl.
+      Die “0” ist grün und bedeutet bei einer Farb­wette automatisch Verlust.
+      Gewinn: Verdoppelung deines Einsatzes (Auszahlung 2 ×).
 
-    Even or Odd
-    You bet on whether the number is even or odd.
-    The "0" is also considered a loss here.
-    Win: Double your stake (2 ×).
+  Gerade oder Ungerade
+      Du wettest darauf, ob die Zahl gerade oder ungerade ist.
+      Die “0” gilt hier ebenfalls als Verlust.
+      Gewinn: Verdoppelung deines Einsatzes (2 ×).
 
-    Low (1–18) or High (19–36)
-    You bet on which of the two blocks the number falls into.
-    The "0" results in a loss.
-    Win: Double your stake (2 ×).
+  Niedrig (1–18) oder Hoch (19–36)
+      Du wettest, in welchem der beiden Blöcke die Zahl liegt.
+      Die “0” führt zum Verlust.
+      Gewinn: Verdoppelung deines Einsatzes (2 ×).
 
-    Rows (1st, 2nd, or 3rd Row)
-    1st Row: Numbers 1, 4, 7, …, 34
-    2nd Row: Numbers 2, 5, 8, …, 35
-    3rd Row: Numbers 3, 6, 9, …, 36
-    The "0" does not belong to any row.
-    Win: Triple your stake (3 ×).
+  Reihen (1., 2. oder 3. Reihe)
+          Reihe: Zahlen 1, 4, 7, …, 34
+          Reihe: Zahlen 2, 5, 8, …, 35
+          Reihe: Zahlen 3, 6, 9, …, 36
+      Die “0” gehört zu keiner Reihe.
+      Gewinn: Verdreifachung deines Einsatzes (3 ×).
 
-    Dozen (1–12, 13–24, or 25–36)
-    You choose one of the three dozens.
-    The "0" results in a loss.
-    Win: Triple your stake (3 ×).
+  Dutzend (1.–12., 13.–24. oder 25.–36.)
+      Du wählst eines der drei Dutzende aus.
+      Die “0” führt zum Verlust.
+      Gewinn: Verdreifachung deines Einsatzes (3 ×).
 
-    Single Number (Straight Up)
-    You bet on exactly one number (1–36).
-    If your number hits exactly, you win 36 times your stake.
+  Einzelzahl (Straight Up)
+      Du wettest auf genau eine Zahl (1–36).
+      Trifft genau deine Zahl, gewinnst du das 36-Fache deines Einsatzes.
       """;
   
   // create scanner object
@@ -135,12 +135,12 @@ public class Roulette {
     System.out.println("----------------------------------------------------------");
     System.out.println("|                   Belibige Zahl ('z')                  |");
     System.out.println("----------------------------------------------------------");
-    System.out.println("You have: " + YELLOW + umoney + " CHF" + RESET);
-    System.out.print("On what do you want to bet: ");
+    System.out.println("Sie haben: " + YELLOW + umoney + " CHF" + RESET);
+    System.out.print("Auf was wollen sie Wetten: ");
 
     do { // get user target
       uc = scnr.nextLine().trim().toLowerCase(); 
-      if (!(Arrays.asList(AC).contains(uc))) {System.out.print(uc + " is invalid, try again: ");}
+      if (!(Arrays.asList(AC).contains(uc))) {System.out.print(uc + " ist ungültig, versuchen Sie es noch einmal: ");}
     } while (!(Arrays.asList(AC).contains(uc)));
 
     // get exact num if target == z
@@ -159,7 +159,7 @@ public class Roulette {
     }
 
     do {
-      System.out.print("How much do you want to be on " + uc + " ? ");
+      System.out.print("Wieviel möchten sie auf " + uc + " wetten ? ");
 
       while (!scnr.hasNextInt()) {
         System.out.print("Bitte geben sie eine Gültige Zahl an: ");
@@ -168,9 +168,9 @@ public class Roulette {
       uba = scnr.nextInt();
 
       if (uba > umoney) {
-        System.out.println("Your bet is too high. " + umoney + " is your current balance, try again.");
+        System.out.println("Ihr einsatz ist zu hoch, sie haben: " + umoney + " versuchen sie es nocheinmal. ");
       } else if (uba < 1) {
-        System.out.println("Your bet must be at least 1, try again.");
+        System.out.println("Ihr einsatz muss mindestens 1 betragen. ");
       }
 
     } while (uba > umoney || uba < 1);
