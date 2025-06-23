@@ -5,6 +5,7 @@ import java.lang.Thread;
 
 public class Roulette {
   static final double VERSION=1.10;
+
   // constants for text manipulation in terminal
   static final String RESET = "\033[0m";
   static final String BOLD = "\033[1m";
@@ -50,6 +51,7 @@ public class Roulette {
   static final int[] ROWTWO              = { 2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35 };
   static final int[] ROWTHREE            = { 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36 };
   static final String[] AC               = { "first 12", "second 12", "third 12", "1-18", "even", "red", "black", "odd", "19-36", "z", "row 1",  "row 2", "row 3"};
+
 
   // start money
   static int z = 0;
@@ -164,6 +166,7 @@ public class Roulette {
 
     do {
       System.out.print("How much do you want to be on " + uc + " ? ");
+
 
       while (!scnr.hasNextInt()) {
         System.out.print("Please enter a valid number: ");
