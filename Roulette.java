@@ -320,7 +320,7 @@ public class Roulette {
       System.out.println("You have won: + " + (Integer.valueOf(uir[1]) * multiplyer) + GREEN + "  \\^o^/" + RESET);
       umoney = (umoney + (Integer.valueOf(uir[1]) * multiplyer));
       if (umoney > highscore) {highscore = umoney;
-      System.out.println("Your score is: " + YELLOW + umoney + RESET + GREEN+"You beat the highscore, good job"+RESET);
+      System.out.println("Your score is: " + YELLOW + umoney + RESET + GREEN+" You beat the highscore, good job"+RESET);
       }
     }
   }
