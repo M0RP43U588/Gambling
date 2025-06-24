@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.lang.Thread;
 
 public class Roulette {
-  static final double VERSION=0.69;
+  static final double VERSION= 1.01;
   // constants for text manipulation in terminal
   static final String RESET = "\033[0m";
   static final String BOLD = "\033[1m";
@@ -98,7 +98,7 @@ Rot oder Schwarz
       claer();
       z++;
       highscore = hs.r();
-      System.out.printf("Roulette version: %.02f\n", VERSION);
+      System.out.printf("Roulette version: Release %.02f\n", VERSION);
       System.out.println("/--------------------------\\");
       System.out.println("|   Type \"go\" to start     | ");
       System.out.println("|--------------------------|");
@@ -145,7 +145,9 @@ Rot oder Schwarz
 
     do { // get user target
       uc = scnr.nextLine().trim().toLowerCase(); 
-      if (!(Arrays.asList(AC).contains(uc))) {System.out.print(uc + " ist ungültig, versuchen Sie es noch einmal: ");}
+      if (!(Arrays.asList(AC).contains(uc))) {
+        System.out.print(uc + " ist ungültig, versuchen Sie es noch einmal: ");
+      }
     } while (!(Arrays.asList(AC).contains(uc)));
 
     // get exact num if target == z
@@ -214,34 +216,34 @@ Rot oder Schwarz
         String texture1 = "   ";                    
         String texture2 = "" + WHITE_BACKGROUND + " o " + RESET + "";
         while (i <= (antagonist + 111)) {
-            String[] slots = new String[37];
+            String[] s = new String[37];
             int target = i % 37;
 
             for (int idx = 0; idx < 37; idx++) {
-                slots[idx] = (idx == target)
+                s[idx] = (idx == target)
                  ? texture2
                  : texture1;
             }
             claer();
             System.out.println("                       ________________________________                       ");
-            System.out.println("                     /      " + slots[36] + RED_BACKGROUND + " 36 "    + RESET + "    " + GREEN_BACKGROUND + " 0 " + RESET + slots[0] + "  " + RED_BACKGROUND + " 1 "    + RESET + slots[1] + "   \\");
-            System.out.println("                  / " + slots[35] + BLACK_BACKGROUND + " 35 " + RESET    + "                           " + BLACK_BACKGROUND + " 2 " + RESET + slots[2]    + " \\");
-            System.out.println("              /  " + slots[34] + RED_BACKGROUND + " 34 " + RESET    + "                                 " + RED_BACKGROUND + " 3 " + RESET + slots[3]    + "  \\");
-            System.out.println("          /   " + slots[33] + BLACK_BACKGROUND + " 33 " + RESET    + "                                       " + BLACK_BACKGROUND + " 4 " + RESET + slots[4]    + "  \\");
-            System.out.println("         /   " + slots[32] + RED_BACKGROUND + " 32 " + RESET    + "                                         " + RED_BACKGROUND + " 5 " + RESET + slots[5]    + "   \\");
-            System.out.println("      /   " + slots[31] + BLACK_BACKGROUND + " 31 " + RESET    + "                                              " + BLACK_BACKGROUND + " 6 " + RESET    + slots[6] + "  \\");
-            System.out.println("     /  " + slots[30] + RED_BACKGROUND + " 30 " + RESET    + "                                                 " + RED_BACKGROUND + " 7 " + RESET    + slots[7] + "  \\");
-            System.out.println("    /  " + slots[29] + BLACK_BACKGROUND + " 29 " + RESET    + "                                                   " + BLACK_BACKGROUND + " 8 " + RESET    + slots[8] + "  \\");
-            System.out.println("    |  " + slots[28] + BLACK_BACKGROUND + " 28 " + RESET    + "                                                   " + RED_BACKGROUND + " 9 " + RESET    + slots[9] + "  |");
-            System.out.println("    \\  " + slots[27] + RED_BACKGROUND + " 27 " + RESET    + "                                                  " + BLACK_BACKGROUND + " 10 " + RESET    + slots[10] + " /");
-            System.out.println("     \\  " + slots[26] + BLACK_BACKGROUND + " 26 " + RESET    + "                                                " + BLACK_BACKGROUND + " 11 " + RESET    + slots[11] + " /");
-            System.out.println("      \\  " + slots[25] + RED_BACKGROUND + " 25 " + RESET    + "                                              " + RED_BACKGROUND + " 12 " + RESET    + slots[12] + " /");
-            System.out.println("        \\  " + slots[24] + BLACK_BACKGROUND + " 24 " + RESET    + "                                          " + BLACK_BACKGROUND + " 13 " + RESET + slots[13]    + " /  ");
-            System.out.println("         \\  " + slots[23] + RED_BACKGROUND + " 23 " + RESET    + "                                        " + RED_BACKGROUND + " 14 " + RESET + slots[14]    + " /");
-            System.out.println("            \\  " + slots[22] + BLACK_BACKGROUND + " 22 " + RESET    + "                                  " + BLACK_BACKGROUND + " 15 " + RESET + slots[15]    + "  /");
-            System.out.println("                \\ " + slots[21] + RED_BACKGROUND + " 21 " + RESET    + "                            " + RED_BACKGROUND + " 16 " + RESET + slots[16]    + "  /");
-            System.out.println("                   \\  " + slots[20] + BLACK_BACKGROUND + " 20 "    + RESET + "                     " + BLACK_BACKGROUND + " 17 " + RESET + slots[17]    + " /");
-            System.out.println("                          \\   " + slots[19] + RED_BACKGROUND + " 19 "    + RESET + "     " + RED_BACKGROUND + " 18 " + RESET + slots[18]    + "       /");
+            System.out.println("                     /      " + s[36] + RED_BACKGROUND + " 36 "    + RESET + "    " + GREEN_BACKGROUND + " 0 " + RESET + s[0] + "  " + RED_BACKGROUND + " 1 "    + RESET + s[1] + "   \\");
+            System.out.println("                  / " + s[35] + BLACK_BACKGROUND + " 35 " + RESET    + "                           " + BLACK_BACKGROUND + " 2 " + RESET + s[2]    + " \\");
+            System.out.println("              /  " + s[34] + RED_BACKGROUND + " 34 " + RESET    + "                                 " + RED_BACKGROUND + " 3 " + RESET + s[3]    + "  \\");
+            System.out.println("          /   " + s[33] + BLACK_BACKGROUND + " 33 " + RESET    + "                                       " + BLACK_BACKGROUND + " 4 " + RESET + s[4]    + "  \\");
+            System.out.println("         /   " + s[32] + RED_BACKGROUND + " 32 " + RESET    + "                                         " + RED_BACKGROUND + " 5 " + RESET + s[5]    + "   \\");
+            System.out.println("      /   " + s[31] + BLACK_BACKGROUND + " 31 " + RESET    + "                                              " + BLACK_BACKGROUND + " 6 " + RESET    + s[6] + "  \\");
+            System.out.println("     /  " + s[30] + RED_BACKGROUND + " 30 " + RESET    + "                                                 " + RED_BACKGROUND + " 7 " + RESET    + s[7] + "  \\");
+            System.out.println("    /  " + s[29] + BLACK_BACKGROUND + " 29 " + RESET    + "                                                   " + BLACK_BACKGROUND + " 8 " + RESET    + s[8] + "  \\");
+            System.out.println("    |  " + s[28] + BLACK_BACKGROUND + " 28 " + RESET    + "                                                   " + RED_BACKGROUND + " 9 " + RESET    + s[9] + "  |");
+            System.out.println("    \\  " + s[27] + RED_BACKGROUND + " 27 " + RESET    + "                                                  " + BLACK_BACKGROUND + " 10 " + RESET    + s[10] + " /");
+            System.out.println("     \\  " + s[26] + BLACK_BACKGROUND + " 26 " + RESET    + "                                                " + BLACK_BACKGROUND + " 11 " + RESET    + s[11] + " /");
+            System.out.println("      \\  " + s[25] + RED_BACKGROUND + " 25 " + RESET    + "                                              " + RED_BACKGROUND + " 12 " + RESET    + s[12] + " /");
+            System.out.println("        \\  " + s[24] + BLACK_BACKGROUND + " 24 " + RESET    + "                                          " + BLACK_BACKGROUND + " 13 " + RESET + s[13]    + " /  ");
+            System.out.println("         \\  " + s[23] + RED_BACKGROUND + " 23 " + RESET    + "                                        " + RED_BACKGROUND + " 14 " + RESET + s[14]    + " /");
+            System.out.println("            \\  " + s[22] + BLACK_BACKGROUND + " 22 " + RESET    + "                                  " + BLACK_BACKGROUND + " 15 " + RESET + s[15]    + "  /");
+            System.out.println("                \\ " + s[21] + RED_BACKGROUND + " 21 " + RESET    + "                            " + RED_BACKGROUND + " 16 " + RESET + s[16]    + "  /");
+            System.out.println("                   \\  " + s[20] + BLACK_BACKGROUND + " 20 "    + RESET + "                     " + BLACK_BACKGROUND + " 17 " + RESET + s[17]    + " /");
+            System.out.println("                          \\   " + s[19] + RED_BACKGROUND + " 19 "    + RESET + "     " + RED_BACKGROUND + " 18 " + RESET + s[18]    + "       /");
             System.out.println("                           -----------------------------             "                   + "                "); // 20
             i++;
             pm(25); 
