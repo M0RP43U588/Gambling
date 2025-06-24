@@ -3,7 +3,7 @@ This is a project we had to do in IMS, and it is written in Java (why do we lear
 
 Our project, like many others in our class, focuses on gambling but we want to be clear that we !(do not encourage) anyone to gamble in real life.
 
-The Project is finished and will only be maintained for as long as we feel like it.
+The Project is finished and will only be maintained for as long as we feel like it. It was a **success**, we were better than the vibe-coders and windows users.
 
 ## Goal
 The Goal of the Project is !(to learn infinite java methods) and to beat the Windows users by making a better Project than theirs.
