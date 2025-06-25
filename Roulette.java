@@ -244,43 +244,6 @@ public class Roulette {
       System.out.println("                           -----------------------------             "                   + "                "); // 20
       i++;
       pm(25); 
-    static void anim(int antagonist) {
-        int i = 0;
-        String texture1 = "   ";                    
-        String texture2 = "" + WHITE_BACKGROUND + " o " + RESET + "";
-        while (i <= (antagonist + 111)) {
-            String[] s = new String[37];
-            int target = i % 37;
-
-            for (int idx = 0; idx < 37; idx++) {
-                s[idx] = (idx == target)
-                 ? texture2
-                 : texture1;
-            }
-            claer();
-            System.out.println("                       ________________________________                       ");
-            System.out.println("                     /      " + s[36] + RED_BACKGROUND + " 36 "    + RESET + "    " + GREEN_BACKGROUND + " 0 " + RESET + s[0] + "  " + RED_BACKGROUND + " 1 "    + RESET + s[1] + "   \\");
-            System.out.println("                  / " + s[35] + BLACK_BACKGROUND + " 35 " + RESET    + "                           " + BLACK_BACKGROUND + " 2 " + RESET + s[2]    + " \\");
-            System.out.println("              /  " + s[34] + RED_BACKGROUND + " 34 " + RESET    + "                                 " + RED_BACKGROUND + " 3 " + RESET + s[3]    + "  \\");
-            System.out.println("          /   " + s[33] + BLACK_BACKGROUND + " 33 " + RESET    + "                                       " + BLACK_BACKGROUND + " 4 " + RESET + s[4]    + "  \\");
-            System.out.println("         /   " + s[32] + RED_BACKGROUND + " 32 " + RESET    + "                                         " + RED_BACKGROUND + " 5 " + RESET + s[5]    + "   \\");
-            System.out.println("      /   " + s[31] + BLACK_BACKGROUND + " 31 " + RESET    + "                                              " + BLACK_BACKGROUND + " 6 " + RESET    + s[6] + "  \\");
-            System.out.println("     /  " + s[30] + RED_BACKGROUND + " 30 " + RESET    + "                                                 " + RED_BACKGROUND + " 7 " + RESET    + s[7] + "  \\");
-            System.out.println("    /  " + s[29] + BLACK_BACKGROUND + " 29 " + RESET    + "                                                   " + BLACK_BACKGROUND + " 8 " + RESET    + s[8] + "  \\");
-            System.out.println("    |  " + s[28] + BLACK_BACKGROUND + " 28 " + RESET    + "                                                   " + RED_BACKGROUND + " 9 " + RESET    + s[9] + "  |");
-            System.out.println("    \\  " + s[27] + RED_BACKGROUND + " 27 " + RESET    + "                                                  " + BLACK_BACKGROUND + " 10 " + RESET    + s[10] + " /");
-            System.out.println("     \\  " + s[26] + BLACK_BACKGROUND + " 26 " + RESET    + "                                                " + BLACK_BACKGROUND + " 11 " + RESET    + s[11] + " /");
-            System.out.println("      \\  " + s[25] + RED_BACKGROUND + " 25 " + RESET    + "                                              " + RED_BACKGROUND + " 12 " + RESET    + s[12] + " /");
-            System.out.println("        \\  " + s[24] + BLACK_BACKGROUND + " 24 " + RESET    + "                                          " + BLACK_BACKGROUND + " 13 " + RESET + s[13]    + " /  ");
-            System.out.println("         \\  " + s[23] + RED_BACKGROUND + " 23 " + RESET    + "                                        " + RED_BACKGROUND + " 14 " + RESET + s[14]    + " /");
-            System.out.println("            \\  " + s[22] + BLACK_BACKGROUND + " 22 " + RESET    + "                                  " + BLACK_BACKGROUND + " 15 " + RESET + s[15]    + "  /");
-            System.out.println("                \\ " + s[21] + RED_BACKGROUND + " 21 " + RESET    + "                            " + RED_BACKGROUND + " 16 " + RESET + s[16]    + "  /");
-            System.out.println("                   \\  " + s[20] + BLACK_BACKGROUND + " 20 "    + RESET + "                     " + BLACK_BACKGROUND + " 17 " + RESET + s[17]    + " /");
-            System.out.println("                          \\   " + s[19] + RED_BACKGROUND + " 19 "    + RESET + "     " + RED_BACKGROUND + " 18 " + RESET + s[18]    + "       /");
-            System.out.println("                           -----------------------------             "                   + "                "); // 20
-            i++;
-            pm(25); 
-        }
     }
   }
 
